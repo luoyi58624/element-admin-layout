@@ -1,6 +1,6 @@
 import 'uno.css'
-import '@unocss/reset/normalize.css'
-
+import '@unocss/reset/tailwind-compat.css'
+import './styles/index.scss'
 import Layout from './layout/Layout.vue'
 
 export { Layout }

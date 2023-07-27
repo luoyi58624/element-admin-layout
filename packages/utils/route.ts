@@ -10,14 +10,13 @@ export function routeToMenu(
   routes.forEach(route => {
     const menu: MenuModel = {
       title: route.meta?.title ?? route.name.toString() ?? '无',
-      path: (parentRoute?.path ?? '' + route.path).trim(),
+      path: isEmpty(parentRoute) ? route.path : parentRoute.path + '/' + route.path,
       icon: route.meta?.icon ?? ''
     }
     if (!isEmpty(route.children) && route.children.length > 0) {
       menu.children = routeToMenu(route.children, route)
-    } else {
-      menus.push(menu)
     }
+    menus.push(menu)
   })
   return menus
 }

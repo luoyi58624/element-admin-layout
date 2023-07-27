@@ -16,19 +16,14 @@
       </ElIcon>
       <span>{{ menu.title }}</span>
     </template>
+    <MenuItem v-for="childMenu in menu.children" :menu="childMenu" />
   </ElSubMenu>
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
 import Icon from '../../components/Icon.vue'
-import { MenuModel } from '../../types'
 
-interface Props {
-  menu: MenuModel
-}
-defineProps<Props>()
+defineProps(['menu'])
 </script>
 
 <style scoped lang="scss"></style>

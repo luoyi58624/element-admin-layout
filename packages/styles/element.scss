@@ -1,0 +1,55 @@
+.el-button{
+  background-color: var(--el-button-bg-color);
+}
+
+.el-select {
+  width: 100%;
+}
+
+.el-col {
+  margin-bottom: 4px;
+}
+
+.el-menu {
+  border-right: none !important;
+}
+
+/* 解决element ui选中子菜单时父菜单不会高亮 */
+.is-active > .el-sub-menu__title, .is-active > .el-submenu__title > i:nth-child(1) {
+  color: var(--admin-layout-theme-light-sidebarActiveText) !important
+}
+
+.dark{
+  .is-active > .el-sub-menu__title, .is-active > .el-submenu__title > i:nth-child(1) {
+    color: var(--admin-layout-theme-dark-sidebarActiveText) !important
+  }
+}
+/* 全屏 dialog 固定 body 高度，防止被内容撑开 */
+.el-dialog__body {
+  height: calc(100% - 30px);
+  min-height: 400px;
+}
+
+/*drawer抽屉样式*/
+.drawer_content {
+  width: 100%;
+  padding: 0 20px;
+}
+
+/* drawer开启滚动条 */
+.el-drawer__body {
+  padding: 0;
+  overflow: auto;
+}
+
+.drawer_footer {
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+/* 隐藏颜色选择器清除按钮 */
+.el-color-dropdown__btns > :nth-child(2) {
+  display: none !important;
+}

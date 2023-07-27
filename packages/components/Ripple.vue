@@ -96,19 +96,19 @@ defineExpose({
 
 @keyframes ripperEnter {
   0% {
-    opacity: 0.16;
+    opacity: 0;
     transform: scale(0);
   }
 
   100% {
-    opacity: 0.4;
+    opacity: 0.3;
     transform: scale(1);
   }
 }
 
 @keyframes ripperLeave {
   0% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
 
   100% {

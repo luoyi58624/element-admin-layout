@@ -25,3 +25,13 @@ export function darken(color: string, num: number) {
 export function isDark(color) {
 	return new TinyColor(color).getBrightness() < 165;
 }
+
+/**
+ * 在指定颜色上对其加深，如果是亮色，则颜色变深，如果是暗色，则颜色变浅
+ * @param color 
+ * @param scale 
+ * @returns 
+ */
+export function deepenColor(color: string, scale: number): string {
+  return isDark(color) ? lighten(color, scale) : darken(color, scale)
+}

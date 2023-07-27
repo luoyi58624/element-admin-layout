@@ -15,11 +15,12 @@ const sidebarWidth = inject('sidebarWidth')!
       top: navbarHeight + 'px'
     }">
     <div class="w-full p-2 overflow-hidden overflow-y-auto">
-      <router-view v-slot="{ Component }">
-        <transition name="route-fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+      <router-view/>
+      <!--      <router-view v-slot="{ Component }">-->
+      <!--        <transition name="route-fade" mode="out-in">-->
+      <!--          <component :is="Component" />-->
+      <!--        </transition>-->
+      <!--      </router-view>-->
     </div>
   </div>
 </template>

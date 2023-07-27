@@ -21,7 +21,7 @@ import {
   themeKey
 } from '../config/provide_key'
 import { darkThemes, lightThemes } from '../config/theme'
-import { darken, isDark as isDarkColor, lighten } from '../utils/color'
+import { deepenColor } from '../utils/color'
 const props = defineProps<LayoutProps>()
 
 const scope = effectScope()
@@ -98,12 +98,8 @@ function setSubThemeVar() {
   const targetTheme = isDark.value ? darkTheme.value : lightTheme.value
   document.body.style.setProperty(
     '--admin-layout-theme-navbar-hover',
-    calcLayoutColor(targetTheme.layout.navbar, 10)
+    deepenColor(targetTheme.layout.navbar, 10)
   )
-}
-
-function calcLayoutColor(color: string, scale: number): string {
-  return isDarkColor(color) ? lighten(color, scale) : darken(color, scale)
 }
 
 onBeforeMount(() => {

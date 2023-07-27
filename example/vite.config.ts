@@ -13,7 +13,7 @@ export default defineConfig({
     Unocss(),
     AutoImport({
       resolvers: [ElementPlusResolver()],
-      imports: ['vue', 'vue-router']
+      imports: ['vue', 'vue-router'],
     }),
     Components({
       resolvers: [ElementPlusResolver()],
