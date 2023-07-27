@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue3-admin-layout": "link:..\\packages"
+  }
+}

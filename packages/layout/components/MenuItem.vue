@@ -1,0 +1,34 @@
+<template>
+  <RouterLink v-if="menu.children == null" :to="menu.path">
+    <ElMenuItem :index="menu.path">
+      <ElIcon>
+        <div v-if="menu.icon == ''" class="i-heroicons-solid-view-grid" />
+        <Icon v-else :icon="menu.icon" />
+      </ElIcon>
+      <span>{{ menu.title }}</span>
+    </ElMenuItem>
+  </RouterLink>
+  <ElSubMenu v-else :index="menu.path" :showTimeout="50" :hideTimeout="50">
+    <template #title>
+      <ElIcon>
+        <div v-if="menu.icon == ''" class="i-mdi-folder" />
+        <Icon v-else :icon="menu.icon" />
+      </ElIcon>
+      <span>{{ menu.title }}</span>
+    </template>
+  </ElSubMenu>
+</template>
+
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
+import Icon from '../../components/Icon.vue'
+import { MenuModel } from '../../types'
+
+interface Props {
+  menu: MenuModel
+}
+defineProps<Props>()
+</script>
+
+<style scoped lang="scss"></style>

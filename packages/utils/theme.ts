@@ -1,0 +1,3 @@
+function setThemeVar(theme: ThemeModel){
+
+}
