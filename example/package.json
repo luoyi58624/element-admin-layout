@@ -7,6 +7,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue3-admin-layout": "link:..\\packages"
+    "element-plus": "^2.3.8",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.95",
+    "@iconify/vue": "^4.1.1",
+    "@types/node": "^20.4.5",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "sass": "^1.64.1",
+    "typescript": "^5.0.2",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
   }
 }

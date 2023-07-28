@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from 'vue3-admin-layout'
+import { themeKey } from 'element-admin-layout-config'
 
 const themeData = inject(themeKey)!
 </script>

@@ -1,9 +1,9 @@
 <template>
-  <Layout logo="/img/logo.png" :init-routes="layoutRoutes" />
+  <Layout title="Luoyi后台管理系统" logo="/img/logo.png" :init-routes="layoutRoutes" />
 </template>
 
 <script setup lang="ts">
-import { Layout } from 'vue3-admin-layout'
+import { Layout } from 'element-admin-layout-components'
 import { layoutRoutes } from '../router/routes/layout_routes'
 </script>
 
