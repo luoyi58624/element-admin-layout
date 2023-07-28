@@ -1,0 +1,2 @@
+cd ./packages
+npm publish
