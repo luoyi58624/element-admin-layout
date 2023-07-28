@@ -1,7 +1,6 @@
-import {  createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, RouterView } from 'vue-router'
 import Layout from '../views/layout.vue'
-
-import { layoutRoutes } from './routes/layout_routes'
+import Home from '../views/home.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -10,11 +9,31 @@ const router = createRouter({
       path: '/',
       name: 'Layout',
       component: Layout,
-      children: layoutRoutes
+      children: [
+        {
+          path: '',
+          name: 'Home',
+          meta: {
+            title: '首页',
+            icon: 'mdi:home'
+          },
+          component: Home
+        },
+        {
+          path: 'nest',
+          name: 'Nest',
+          component: RouterView,
+          children: [
+            {
+              path: 'one',
+              name: 'One',
+              component: () => import('../views/nest/one.vue')
+            }
+          ]
+        }
+      ]
     }
   ]
 })
-
-
 
 export default router

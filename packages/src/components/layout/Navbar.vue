@@ -34,8 +34,6 @@ function toggleScreen() {
 }
 
 onMounted(() => {
-  console.log(layoutProps.title)
-
   screenfull.on('change', setFullscreen)
 })
 

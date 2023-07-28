@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
+import { Router } from 'vue-router'
 /** Layout组件props */
 export interface LayoutProps {
   /** 导航栏左侧logo */
@@ -8,7 +8,7 @@ export interface LayoutProps {
   /** 导航栏右侧组件 */
   navbarRightComponent?: string
   /** 初始化路由，根据路由生成菜单 */
-  initRoutes?: Array<RouteRecordRaw>
+  router: Router
   /** 初始化明亮主题 */
   lightTheme?: LayoutThemeModel
   /** 初始化黑暗主题 */

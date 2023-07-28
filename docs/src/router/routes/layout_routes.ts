@@ -4,7 +4,7 @@ import Home from '../../views/home.vue'
 export const layoutRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Layout',
+    name: 'Home',
     meta: {
       title: '首页',
       icon: 'mdi:home'
