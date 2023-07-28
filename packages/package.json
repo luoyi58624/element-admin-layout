@@ -1,10 +1,11 @@
 {
   "name": "element-admin-layout",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "files": [
     "dist",
-    "packages.json"
+    "packages.json",
+    "README.md"
   ],
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
