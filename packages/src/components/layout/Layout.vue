@@ -9,9 +9,9 @@ import {
   breakpointKey,
   layoutPropsKey,
   themeKey
-} from 'element-admin-layout-config'
-import { deepenColor } from 'element-admin-layout-utils'
-import { LayoutProps } from 'element-admin-layout-types'
+} from '../../config'
+import { deepenColor } from '../../utils'
+import { LayoutProps } from '../../types'
 
 const props = defineProps<LayoutProps>()
 

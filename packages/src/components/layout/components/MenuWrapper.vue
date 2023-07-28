@@ -15,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { layoutPropsKey, themeKey } from 'element-admin-layout-config'
-import { routeToMenu, isDark as isDarkColor } from 'element-admin-layout-utils'
+import { layoutPropsKey, themeKey } from '../../../config'
+import { routeToMenu, isDark as isDarkColor } from '../../../utils'
 import MenuItem from './MenuItem.vue'
 
 const layoutProps = inject(layoutPropsKey)!

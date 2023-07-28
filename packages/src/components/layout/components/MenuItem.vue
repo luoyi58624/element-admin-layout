@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from 'element-admin-layout-components'
+import { Icon } from '../../../components'
 
 defineProps(['menu'])
 </script>

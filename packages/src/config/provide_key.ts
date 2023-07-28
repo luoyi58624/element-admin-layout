@@ -1,10 +1,5 @@
 import type { InjectionKey, Ref, UnwrapNestedRefs } from 'vue'
-import {
-  LayoutThemeModel,
-  LayoutMenuModel,
-  NavTabModel,
-  LayoutProps
-} from 'element-admin-layout-types'
+import { LayoutThemeModel, LayoutMenuModel, NavTabModel, LayoutProps } from '../types'
 
 /** 获取布局 props 数据 */
 export const layoutPropsKey: InjectionKey<UnwrapNestedRefs<LayoutProps>> = Symbol()

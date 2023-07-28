@@ -3,6 +3,6 @@ import Icon from './icon/Icon.vue'
 import Ripple from './ripple/Ripple.vue'
 
 import 'uno.css'
-import 'element-admin-layout-style'
+import '../styles/index.scss'
 
 export { Layout, Icon, Ripple }

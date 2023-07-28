@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import HeaderIcon from './components/HeaderIcon.vue'
 import screenfull from 'screenfull'
-import { showMessage, isEmpty } from 'element-admin-layout-utils'
-import { layoutKey, breakpointKey, layoutPropsKey, themeKey } from 'element-admin-layout-config'
+import { showMessage, isEmpty } from '../../utils'
+import { layoutKey, breakpointKey, layoutPropsKey, themeKey } from '../../config'
 
 const layoutProps = inject(layoutPropsKey)!
 const layoutData = inject(layoutKey)!

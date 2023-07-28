@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue'
-
 interface Ripple {
   key: any
   width: number

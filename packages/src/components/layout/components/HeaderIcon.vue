@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { Ripple } from 'element-admin-layout-components'
+import { Ripple } from '../../../components'
 
 defineProps({
   icon: String,
