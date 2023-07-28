@@ -26,4 +26,8 @@ import { Icon } from 'element-admin-layout-components'
 defineProps(['menu'])
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+a {
+  text-decoration: none;
+}
+</style>

@@ -17,7 +17,6 @@ jobs:
         with:
           version: 8
       - run: pnpm i --frozen-lockfile
-      - run: cd packages
       - run: pnpm run build
       - uses: actions/setup-node@v3
         with:
