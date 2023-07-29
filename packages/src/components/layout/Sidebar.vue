@@ -1,6 +1,7 @@
 <template>
   <aside
     id="admin-layout-sidebar"
+    class="transition-all duration-300"
     :style="{
       width: sidebarWidth + 'px',
       height: `calc(100% - ${navbarHeight}px)`,

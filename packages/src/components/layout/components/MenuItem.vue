@@ -1,18 +1,16 @@
 <template>
   <RouterLink v-if="menu.children == null" :to="menu.path">
     <ElMenuItem :index="menu.path">
-      <ElIcon>
-        <div v-if="menu.icon == ''" class="i-heroicons-solid-view-grid" />
-        <Icon v-else :icon="menu.icon" />
+      <ElIcon :size="22">
+        <Icon :icon="menu.icon == '' ? 'i-heroicons-solid-view-grid' : menu.icon" />
       </ElIcon>
-      <span>{{ menu.title }}</span>
+      <template #title>{{ menu.title }}</template>
     </ElMenuItem>
   </RouterLink>
   <ElSubMenu v-else :index="menu.path" :showTimeout="50" :hideTimeout="50">
     <template #title>
-      <ElIcon>
-        <div v-if="menu.icon == ''" class="i-mdi-folder" />
-        <Icon v-else :icon="menu.icon" />
+      <ElIcon :size="22">
+        <Icon :icon="menu.icon == '' ? 'i-mdi-folder' : menu.icon" />
       </ElIcon>
       <span>{{ menu.title }}</span>
     </template>

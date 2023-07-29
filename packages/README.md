@@ -40,7 +40,7 @@ const router = createRouter({
           title: '首页',
           icon: 'mdi:home'
         },
-        component: () => import('../views/home.vue')
+        component: () => import('./views/home.vue')
       }
     ])
   ]

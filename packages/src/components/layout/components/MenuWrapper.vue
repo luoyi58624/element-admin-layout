@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar>
+  <ElScrollbar>
     <ElMenu
       :backgroundColor="isDark ? darkTheme.layout.sidebar : lightTheme.layout.sidebar"
       :textColor="sliderTextColor"
@@ -8,16 +8,17 @@
       "
       :defaultActive="route.path"
       :uniqueOpened="false"
-      :collapseTransition="false">
+      :collapseTransition="false"
+      :collapse="!breakpointData.mobile && layoutData.isCollapse">
       <MenuItem v-for="menu in menus" :menu="menu" />
     </ElMenu>
-  </el-scrollbar>
+  </ElScrollbar>
 </template>
 
 <script setup lang="ts">
 import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
-import { themeKey } from '../../../config'
+import { breakpointKey, layoutKey, themeKey } from '../../../config'
 import { routeToMenu, isDark as isDarkColor } from '../../../utils'
 
 const lightText = '#f8f9fa'
@@ -26,6 +27,8 @@ const darkText = '#495057'
 const router = useRouter()
 const route = useRoute()
 
+const layoutData = inject(layoutKey)!
+const breakpointData = inject(breakpointKey)!
 const { isDark, lightTheme, darkTheme } = inject(themeKey)!
 
 const menus = ref([])

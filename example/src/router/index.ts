@@ -16,6 +16,15 @@ const router = createRouter({
         component: Home
       },
       {
+        path: 'test',
+        name: 'Test',
+        meta: {
+          title: '测试',
+          icon: 'mdi:folder'
+        },
+        component: () => import('../views/test.vue')
+      },
+      {
         path: 'nest',
         name: 'Nest',
         component: NestRouterView,

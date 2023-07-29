@@ -23,6 +23,8 @@ const sidebarWidth = inject('sidebarWidth')!
 <style scoped lang="scss">
 #admin-layout-section {
   position: absolute;
+  transition-property: width, left;
+  transition-duration: 300ms;
   background-color: var(--admin-layout-theme-light-section);
 }
 

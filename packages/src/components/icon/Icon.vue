@@ -1,14 +1,11 @@
 <template>
-  <ElIcon>
-    <div v-if="icon.startsWith('i-')" :class="icon"></div>
-    <IconWrapper v-else-if="icon.indexOf(':') !== -1" :icon="icon"></IconWrapper>
-    <component v-else :is="icon"></component>
-  </ElIcon>
+  <div v-if="icon.startsWith('i-')" :class="icon"></div>
+  <IconWrapper v-else-if="icon.indexOf(':') !== -1" :icon="icon"></IconWrapper>
+  <component v-else :is="icon"></component>
 </template>
 
 <script setup lang="ts">
 import { Icon as IconWrapper } from '@iconify/vue'
-import { ElIcon } from 'element-plus'
 
 defineProps({
   // 支持三种类型图标，静态图标、动态图标、组件图标
