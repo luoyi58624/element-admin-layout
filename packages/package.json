@@ -1,6 +1,6 @@
 {
   "name": "element-admin-layout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "files": [
     "dist",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@iconify/json": "^2.2.95",
     "@iconify/vue": "^4.1.1",
+    "unplugin-element-plus": "^0.7.2",
     "vite-plugin-dts": "^3.3.1"
   }
 }

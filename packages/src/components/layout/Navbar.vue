@@ -2,9 +2,9 @@
 import HeaderIcon from './components/HeaderIcon.vue'
 import screenfull from 'screenfull'
 import { showMessage, isEmpty } from '../../utils'
-import { layoutKey, breakpointKey, layoutPropsKey, themeKey } from '../../config'
+import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../../config'
 
-const layoutProps = inject(layoutPropsKey)!
+const layoutConfig = inject(layoutConfigKey)!
 const layoutData = inject(layoutKey)!
 const { isDark } = inject(themeKey)!
 const breakpointData = inject(breakpointKey)!
@@ -51,14 +51,14 @@ onUnmounted(() => {
     }">
     <div style="display: flex; justify-content: center; align-items: center">
       <img
-        v-if="!isEmpty(layoutProps.logo)"
-        :src="layoutProps.logo"
+        v-if="!isEmpty(layoutConfig.logo)"
+        :src="layoutConfig.logo"
         alt=""
         width="36"
         style="cursor: pointer"
         @click="toggleSidebar" />
-      <h3 style="margin-left: 8px">
-        {{ isEmpty(layoutProps.title) ? '后台管理系统' : layoutProps.title }}
+      <h3 style="margin-left: 4px">
+        {{ layoutConfig.title }}
       </h3>
     </div>
 

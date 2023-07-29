@@ -1,8 +1,8 @@
 import type { InjectionKey, Ref, UnwrapNestedRefs } from 'vue'
-import { LayoutThemeModel, LayoutMenuModel, NavTabModel, LayoutProps } from '../types'
+import { LayoutThemeModel, LayoutMenuModel, NavTabModel, LayoutConfig } from '../types'
 
-/** 获取布局 props 数据 */
-export const layoutPropsKey: InjectionKey<UnwrapNestedRefs<LayoutProps>> = Symbol()
+/** 注入layoutConfig配置*/
+export const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
 
 interface LayoutKey {
   /** 页面组件大小 */

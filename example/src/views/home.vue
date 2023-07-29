@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>首页</h1>
-    {{ themeData.isDark }}
     <button @click="themeData.toggleDark()">切换黑暗模式</button>
   </div>
 </template>

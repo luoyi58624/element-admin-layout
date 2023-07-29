@@ -1,7 +1,13 @@
 import { RouteRecordRaw } from 'vue-router'
-import { LayoutMenuModel } from '../../dist'
 import { isEmpty } from './commons'
+import { LayoutMenuModel } from '../types'
 
+/**
+ * 路由转菜单
+ * @param routes 路由数组
+ * @param parentPath 上级路由path
+ * @returns 菜单数组对象
+ */
 export function routeToMenu(
   routes: Array<RouteRecordRaw>,
   parentPath?: string

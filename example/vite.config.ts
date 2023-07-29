@@ -4,6 +4,7 @@ import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
   plugins: [
@@ -21,6 +22,7 @@ export default defineConfig({
       deep: true,
       directoryAsNamespace: false,
       dirs: ['src/components']
-    })
+    }),
+    ElementPlus({})
   ]
 })

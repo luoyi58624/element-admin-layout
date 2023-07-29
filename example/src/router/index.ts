@@ -1,38 +1,33 @@
-import { createRouter, createWebHashHistory, RouterView } from 'vue-router'
-import Layout from '../views/layout.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/home.vue'
+import { createLayoutRouter, NestRouterView } from 'element-admin-layout-components'
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    {
-      path: '/',
-      name: 'Layout',
-      component: Layout,
-      children: [
-        {
-          path: '',
-          name: 'Home',
-          meta: {
-            title: '首页',
-            icon: 'mdi:home'
-          },
-          component: Home
+    createLayoutRouter([
+      {
+        path: '',
+        name: 'Home',
+        meta: {
+          title: '首页',
+          icon: 'mdi:home'
         },
-        {
-          path: 'nest',
-          name: 'Nest',
-          component: RouterView,
-          children: [
-            {
-              path: 'one',
-              name: 'One',
-              component: () => import('../views/nest/one.vue')
-            }
-          ]
-        }
-      ]
-    }
+        component: Home
+      },
+      {
+        path: 'nest',
+        name: 'Nest',
+        component: NestRouterView,
+        children: [
+          {
+            path: 'one',
+            name: 'One',
+            component: () => import('../views/nest/one.vue')
+          }
+        ]
+      }
+    ])
   ]
 })
 

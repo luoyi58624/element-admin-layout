@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { Ripple } from '../../../components'
+import Ripple from '../../../components/ripple/Ripple.vue'
 
 defineProps({
   icon: String,

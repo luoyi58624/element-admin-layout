@@ -15,17 +15,19 @@
 </template>
 
 <script setup lang="ts">
-import { layoutPropsKey, themeKey } from '../../../config'
-import { routeToMenu, isDark as isDarkColor } from '../../../utils'
+import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
-
-const layoutProps = inject(layoutPropsKey)!
-const route = useRoute()
+import { themeKey } from '../../../config'
+import { routeToMenu, isDark as isDarkColor } from '../../../utils'
 
 const lightText = '#f8f9fa'
 const darkText = '#495057'
 
+const router = useRouter()
+const route = useRoute()
+
 const { isDark, lightTheme, darkTheme } = inject(themeKey)!
+
 const menus = ref([])
 
 const sliderTextColor = computed(() => {
@@ -36,7 +38,7 @@ const sliderTextColor = computed(() => {
   }
 })
 
-const layoutRoutes = layoutProps.router.getRoutes().filter(item => item.name === 'Layout')
+const layoutRoutes = router.getRoutes().filter(item => item.name === 'Layout')
 if (layoutRoutes.length > 0) {
   menus.value = routeToMenu(layoutRoutes[0].children, layoutRoutes[0].path)
 }

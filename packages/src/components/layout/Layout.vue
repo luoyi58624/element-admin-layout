@@ -2,25 +2,15 @@
 import Navbar from './Navbar.vue'
 import Sidebar from './Sidebar.vue'
 import Section from './Section.vue'
-import {
-  darkThemes,
-  lightThemes,
-  layoutKey,
-  breakpointKey,
-  layoutPropsKey,
-  themeKey
-} from '../../config'
+import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../../config'
 import { deepenColor } from '../../utils'
-import { LayoutProps } from '../../types'
-
-const props = defineProps<LayoutProps>()
 
 const scope = effectScope()
-
+const layoutConfig = inject(layoutConfigKey)
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-const lightTheme = ref(props.lightTheme ?? lightThemes[0])
-const darkTheme = ref(props.darkTheme ?? darkThemes[0])
+const lightTheme = ref(layoutConfig.lightTheme)
+const darkTheme = ref(layoutConfig.darkTheme)
 
 const layoutData = reactive({
   size: 'default',
@@ -102,7 +92,6 @@ onBeforeMount(() => {
 onUnmounted(() => {
   scope.stop()
 })
-provide(layoutPropsKey, props)
 provide(layoutKey, layoutData)
 provide(themeKey, {
   isDark,

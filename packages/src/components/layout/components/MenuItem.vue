@@ -21,7 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '../../../components'
+import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
+import Icon from '../../../components/icon/Icon.vue'
 
 defineProps(['menu'])
 </script>

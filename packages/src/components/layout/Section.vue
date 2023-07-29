@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NestRouterView from './components/NestRouterView.vue'
+
 const navbarHeight = inject('navbarHeight')!
 const sidebarWidth = inject('sidebarWidth')!
 </script>
@@ -13,12 +15,7 @@ const sidebarWidth = inject('sidebarWidth')!
       top: navbarHeight + 'px'
     }">
     <div class="w-full p-2 overflow-hidden overflow-y-auto">
-      <router-view />
-      <!--      <router-view v-slot="{ Component }">-->
-      <!--        <transition name="route-fade" mode="out-in">-->
-      <!--          <component :is="Component" />-->
-      <!--        </transition>-->
-      <!--      </router-view>-->
+      <NestRouterView />
     </div>
   </div>
 </template>

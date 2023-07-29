@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.95",
-    "@iconify/vue": "^4.1.1"
+    "@iconify/vue": "^4.1.1",
+    "unplugin-element-plus": "^0.7.2"
   }
 }
