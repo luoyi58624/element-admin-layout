@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import NestRouterView from './components/NestRouterView.vue'
-
-const navbarHeight = inject('navbarHeight')!
-const sidebarWidth = inject('sidebarWidth')!
-</script>
-
 <template>
   <div
     id="admin-layout-section"
@@ -12,7 +5,8 @@ const sidebarWidth = inject('sidebarWidth')!
       width: `calc(100% - ${sidebarWidth}px)`,
       height: `calc(100% - ${navbarHeight}px)`,
       left: sidebarWidth + 'px',
-      top: navbarHeight + 'px'
+      top: navbarHeight + 'px',
+      backgroundColor: isDark ? darkTheme.layout.section : lightTheme.layout.section
     }">
     <div class="w-full p-2 overflow-hidden overflow-y-auto">
       <NestRouterView />
@@ -20,16 +14,19 @@ const sidebarWidth = inject('sidebarWidth')!
   </div>
 </template>
 
-<style scoped lang="scss">
+<script setup lang="ts">
+import { themeKey } from '../../config'
+import NestRouterView from './components/NestRouterView.vue'
+
+const { isDark, lightTheme, darkTheme } = inject(themeKey)!
+const navbarHeight = inject('navbarHeight')!
+const sidebarWidth = inject('sidebarWidth')!
+</script>
+
+<style lang="scss">
 #admin-layout-section {
   position: absolute;
   transition-property: width, left;
   transition-duration: 300ms;
-  background-color: var(--admin-layout-theme-light-section);
-}
-
-.dark #admin-layout-section {
-  color: white;
-  background-color: var(--admin-layout-theme-dark-section);
 }
 </style>

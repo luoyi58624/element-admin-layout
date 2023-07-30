@@ -4,25 +4,23 @@ export interface LayoutConfig {
   title?: string
   /** 导航栏左侧logo */
   logo?: string
-  /** 导航栏右侧组件 */
+  /** 导航栏右侧组件，请自行注册全局组件，然后传递该组件名字 */
   navbarRightComponent?: string
+  /** 初始化应用主题模式，默认跟随平台：auto */
+  themeMode?: 'auto' | 'light' | 'dark'
   /** 初始化明亮主题 */
   lightTheme?: LayoutThemeModel
   /** 初始化黑暗主题 */
   darkTheme?: LayoutThemeModel
+  /** 亮色背景下的文字颜色，默认淡灰色：#495057 */
+  lightTextColor?: string
+  /** 暗色背景下的文字颜色，默认淡白色：#f8f9fa */
+  darkTextColor?: string
 }
 
 /** 主题模型 */
 export interface LayoutThemeModel {
-  /** element主题 */
-  element: {
-    primary: string
-    success: string
-    warning: string
-    danger: string
-    info: string
-  }
-  /** 布局主题 */
+  /** layout 主题 */
   layout: {
     /** 导航栏背景色 */
     navbar: string
@@ -32,6 +30,14 @@ export interface LayoutThemeModel {
     section: string
     /** 侧边栏文字激活颜色 */
     sidebarActiveText: string
+  }
+  /** element-plus 主题 */
+  element: {
+    primary: string
+    success: string
+    warning: string
+    danger: string
+    info: string
   }
 }
 

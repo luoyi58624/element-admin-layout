@@ -4,6 +4,8 @@ import { LayoutThemeModel, LayoutMenuModel, NavTabModel, LayoutConfig } from '..
 /** 注入layoutConfig配置*/
 export const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
 
+export type drawerPositionType = 'rtl' | 'ltr' | 'ttb' | 'btt'
+
 interface LayoutKey {
   /** 页面组件大小 */
   size: string
@@ -18,7 +20,7 @@ interface LayoutKey {
   /** 是否开启页面缓存 */
   openKeepalive: boolean
   /** drawer位置 */
-  drawerPosition: string
+  drawerPosition: drawerPositionType
   /** sidebar菜单 */
   menus: Array<LayoutMenuModel>
   /** 路由标签 */
@@ -30,9 +32,11 @@ export const layoutKey: InjectionKey<UnwrapNestedRefs<LayoutKey>> = Symbol()
 interface ThemeKey {
   /** 是否处于黑暗模式 */
   isDark: Ref<boolean>
-  /** 明亮模式主题 */
+  /** 当前主题 */
+  currentTheme: Ref<LayoutThemeModel>
+  /** 当前主题 */
   lightTheme: Ref<LayoutThemeModel>
-  /** 黑暗模式主题 */
+  /** 当前主题 */
   darkTheme: Ref<LayoutThemeModel>
   /** 切换黑暗模式 */
   toggleDark: () => void

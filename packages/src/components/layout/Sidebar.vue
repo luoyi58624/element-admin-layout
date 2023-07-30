@@ -1,19 +1,21 @@
 <template>
   <aside
     id="admin-layout-sidebar"
-    class="transition-all duration-300"
     :style="{
       width: sidebarWidth + 'px',
       height: `calc(100% - ${navbarHeight}px)`,
-      top: navbarHeight + 'px'
+      top: navbarHeight + 'px',
+      backgroundColor: currentTheme.layout.sidebar
     }">
     <MenuWrapper />
   </aside>
 </template>
 
 <script setup lang="ts">
+import { themeKey } from '../../config'
 import MenuWrapper from './components/MenuWrapper.vue'
 
+const { currentTheme } = inject(themeKey)!
 const navbarHeight = inject('navbarHeight')!
 const sidebarWidth = inject('sidebarWidth')!
 </script>
@@ -23,11 +25,6 @@ const sidebarWidth = inject('sidebarWidth')!
   position: absolute;
   left: 0;
   user-select: none;
-  background-color: var(--admin-layout-theme-light-sidebar);
-}
-
-.dark #admin-layout-sidebar {
-  color: white;
-  background-color: var(--admin-layout-theme-dark-sidebar);
+  transition: all 0.3s;
 }
 </style>

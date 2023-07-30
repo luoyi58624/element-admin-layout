@@ -17,6 +17,21 @@ export function isEmpty(obj) {
 }
 
 /**
+ * 安全地获取storage存储的数据
+ * @param key  storage key
+ * @param defaultValue  如果storage没有存储的数据，则返回默认值
+ * @returns
+ */
+export function safeStorageData<T>(key: string, defaultValue: T): T {
+  const str = localStorage.getItem(key)
+  if (isEmpty(str)) {
+    return defaultValue
+  } else {
+    return JSON.parse(str) as T
+  }
+}
+
+/**
  * 验证邮箱格式是否正确
  * */
 export function verifyEmail(email: string) {

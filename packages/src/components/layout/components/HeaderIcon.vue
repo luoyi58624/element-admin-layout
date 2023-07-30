@@ -13,6 +13,8 @@
 
 <script setup lang="ts">
 import Ripple from '../../../components/ripple/Ripple.vue'
+import { themeKey } from '../../../config'
+import { deepenColor } from '../../../utils'
 
 defineProps({
   icon: String,
@@ -23,8 +25,13 @@ defineProps({
 })
 
 const emits = defineEmits(['click'])
+const { currentTheme } = inject(themeKey)!
 
 const ripperRef = ref()
+
+const hoverColor = computed(() => {
+  return deepenColor(currentTheme.value.layout.navbar, 10)
+})
 
 function addRipper(e) {
   unref(ripperRef).addRipper(e)
@@ -48,7 +55,7 @@ function removeRipper() {
   overflow: hidden;
 
   &:hover {
-    background: var(--admin-layout-theme-navbar-hover);
+    background: v-bind(hoverColor);
 
     & > .icon {
       animation: logoAnimation 0.3s ease-in-out;

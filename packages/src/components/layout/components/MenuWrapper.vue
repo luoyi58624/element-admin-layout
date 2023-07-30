@@ -1,11 +1,9 @@
 <template>
   <ElScrollbar>
     <ElMenu
-      :backgroundColor="isDark ? darkTheme.layout.sidebar : lightTheme.layout.sidebar"
+      :backgroundColor="currentTheme.layout.sidebar"
       :textColor="sliderTextColor"
-      :activeTextColor="
-        isDark ? darkTheme.layout.sidebarActiveText : lightTheme.layout.sidebarActiveText
-      "
+      :activeTextColor="currentTheme.layout.sidebarActiveText"
       :defaultActive="route.path"
       :uniqueOpened="false"
       :collapseTransition="false"
@@ -18,28 +16,24 @@
 <script setup lang="ts">
 import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
-import { breakpointKey, layoutKey, themeKey } from '../../../config'
+import { breakpointKey, layoutConfigKey, layoutKey, themeKey } from '../../../config'
 import { routeToMenu, isDark as isDarkColor } from '../../../utils'
-
-const lightText = '#f8f9fa'
-const darkText = '#495057'
 
 const router = useRouter()
 const route = useRoute()
 
+const layoutConfig = inject(layoutConfigKey)!
 const layoutData = inject(layoutKey)!
 const breakpointData = inject(breakpointKey)!
-const { isDark, lightTheme, darkTheme } = inject(themeKey)!
+const { currentTheme } = inject(themeKey)!
 
 const menus = ref([])
 
-const sliderTextColor = computed(() => {
-  if (isDark.value) {
-    return isDarkColor(darkTheme.value.layout.sidebar) ? lightText : darkText
-  } else {
-    return isDarkColor(lightTheme.value.layout.sidebar) ? lightText : darkText
-  }
-})
+const sliderTextColor = computed(() =>
+  isDarkColor(currentTheme.value.layout.sidebar)
+    ? layoutConfig.darkTextColor
+    : layoutConfig.lightTextColor
+)
 
 const layoutRoutes = router.getRoutes().filter(item => item.name === 'Layout')
 if (layoutRoutes.length > 0) {
@@ -47,4 +41,13 @@ if (layoutRoutes.length > 0) {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+.el-menu {
+  border-right: none !important;
+}
+
+.is-active > .el-sub-menu__title,
+.is-active > .el-submenu__title > i:nth-child(1) {
+  color: v-bind('currentTheme.layout.sidebarActiveText') !important;
+}
+</style>

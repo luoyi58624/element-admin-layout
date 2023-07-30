@@ -2,15 +2,23 @@
 import Navbar from './Navbar.vue'
 import Sidebar from './Sidebar.vue'
 import Section from './Section.vue'
-import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../../config'
-import { deepenColor } from '../../utils'
+import {
+  layoutKey,
+  breakpointKey,
+  themeKey,
+  layoutConfigKey,
+  drawerPositionType
+} from '../../config'
 
-const scope = effectScope()
 const layoutConfig = inject(layoutConfigKey)
-const isDark = useDark()
+
+const isDark = useDark({
+  initialValue: layoutConfig.themeMode
+})
 const toggleDark = useToggle(isDark)
 const lightTheme = ref(layoutConfig.lightTheme)
 const darkTheme = ref(layoutConfig.darkTheme)
+const currentTheme = computed(() => (isDark.value ? darkTheme.value : lightTheme.value))
 
 const layoutData = reactive({
   size: 'default',
@@ -19,7 +27,7 @@ const layoutData = reactive({
   showSidebarDarwer: false,
   autoCloseMenu: false,
   openKeepalive: false,
-  drawerPosition: 'rtl',
+  drawerPosition: 'rtl' as drawerPositionType,
   menus: [],
   navTabs: []
 })
@@ -51,50 +59,10 @@ const sidebarWidth = computed(() => {
   else return layoutData.isCollapse ? 64 : 240
 })
 
-scope.run(() => {
-  watch([isDark, lightTheme.value, darkTheme.value], () => {
-    setSubThemeVar()
-  })
-  watch(lightTheme.value, () => {
-    setLightThemeVar()
-  })
-  watch(darkTheme.value, () => {
-    setDarkThemeVar()
-  })
-})
-
-function setLightThemeVar() {
-  Object.entries(lightTheme.value.layout).forEach(([key, value]) => {
-    document.body.style.setProperty('--admin-layout-theme-light-' + key, value)
-  })
-}
-
-function setDarkThemeVar() {
-  Object.entries(darkTheme.value.layout).forEach(([key, value]) => {
-    document.body.style.setProperty('--admin-layout-theme-dark-' + key, value)
-  })
-}
-
-function setSubThemeVar() {
-  const targetTheme = isDark.value ? darkTheme.value : lightTheme.value
-  document.body.style.setProperty(
-    '--admin-layout-theme-navbar-hover',
-    deepenColor(targetTheme.layout.navbar, 10)
-  )
-}
-
-onBeforeMount(() => {
-  setLightThemeVar()
-  setDarkThemeVar()
-  setSubThemeVar()
-})
-
-onUnmounted(() => {
-  scope.stop()
-})
 provide(layoutKey, layoutData)
 provide(themeKey, {
   isDark,
+  currentTheme,
   lightTheme,
   darkTheme,
   toggleDark
@@ -119,6 +87,25 @@ provide('sidebarWidth', sidebarWidth)
   box-sizing: border-box;
 }
 
+h1 {
+  @apply text-2xl font-bold text-dark-2 dark:text-light-5;
+}
+h2 {
+  @apply text-xl font-bold text-dark-2 dark:text-light-5;
+}
+h3 {
+  @apply text-lg font-bold text-dark-2 dark:text-light-5;
+}
+h4 {
+  @apply text-base font-bold text-dark-2 dark:text-light-5;
+}
+h5 {
+  @apply text-sm font-bold text-dark-2 dark:text-light-5;
+}
+h6 {
+  @apply text-xs font-bold text-dark-2 dark:text-light-5;
+}
+
 #admin-layout-wrapper {
   width: 100vw;
   height: 100vh;
@@ -126,5 +113,34 @@ provide('sidebarWidth', sidebarWidth)
   top: 0;
   left: 0;
   overflow: hidden;
+
+  .el-drawer__title {
+    @apply font-bold text-lg text-dark-2 dark:text-light-5;
+  }
+
+  /* 全屏 dialog 固定 body 高度，防止被内容撑开 */
+  .el-dialog__body {
+    height: calc(100% - 30px);
+    min-height: 400px;
+  }
+
+  /*drawer抽屉样式*/
+  .drawer_content {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* drawer开启滚动条 */
+  .el-drawer__body {
+    padding: 0;
+    overflow: auto;
+  }
+
+  .drawer_footer {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+  }
 }
 </style>
