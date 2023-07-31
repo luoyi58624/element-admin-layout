@@ -24,7 +24,7 @@ export function routeToMenu(routes: Array<RouteRecordRaw>, parentPath?: string):
 			}
 		}
 		const menu: LayoutMenuModel = {
-			title: route.meta?.title ?? route.name.toString() ?? '无',
+			title: route.meta?.title ?? route.name?.toString() ?? '',
 			path: path,
 			icon: route.meta?.icon ?? ''
 		}

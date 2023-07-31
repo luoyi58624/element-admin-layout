@@ -57,19 +57,18 @@ export interface LayoutThemeModel {
 /** 侧边栏菜单模型 */
 export interface LayoutMenuModel {
   /** 菜单标题 */
-  title?: string
+  title: string
   /** 跳转路径 */
-  path?: string
+  path: string
   /** 菜单icon */
-  icon?: string
+  icon: string
   /** 子路由菜单 */
   children?: Array<LayoutMenuModel>
 }
 
 /** 布局路由元数据  */
 export interface LayoutRouteMeta {
-  auth?: boolean
-  /** 路由菜单名字，如果为空则使用componentName */
+  /** 路由菜单名字，若为空则使用route name，route name也为空则不显示菜单名字 */
   title?: string
   /** 路由菜单图标 */
   icon?: string

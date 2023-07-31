@@ -31,7 +31,7 @@ const router = createRouter({
         children: [
           {
             path: 'one',
-            name: 'One',
+           
             component: () => import('../views/nest/one.vue')
           }
         ]
