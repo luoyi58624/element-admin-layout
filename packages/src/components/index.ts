@@ -25,49 +25,43 @@ const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointKey>> = Symbol()
 
 /** 安装element-admin-layout插件 */
 const installAdminLayout = {
-  install(app: App, options?: LayoutConfig) {
-    const config: LayoutConfig = {
-      title: options?.title ?? '后台管理系统',
-      logo: options?.logo ?? undefined,
-      navbarButtons: options?.navbarButtons ?? [
-        'full_screen',
-        'switch_dark',
-        'layout_size',
-        'switch_language',
-        'switch_theme',
-        'layout_setting'
-      ],
-      themeMode: safeStorageData(StorageKey.themeMode, options?.themeMode ?? 'auto'),
-      lightTheme: safeStorageData(StorageKey.lightTheme, options?.lightTheme ?? lightThemes[0]),
-      darkTheme: safeStorageData(StorageKey.darkTheme, options?.darkTheme ?? darkThemes[0]),
-      lightTextColor: options?.lightTextColor ?? '#495057',
-      darkTextColor: options?.darkTextColor ?? '#f8f9fa'
-    }
-    app.provide(layoutConfigKey, config)
-  }
+	install(app: App, options?: LayoutConfig) {
+		const config: LayoutConfig = {
+			title: options?.title ?? '后台管理系统',
+			logo: options?.logo ?? undefined,
+			navbarButtons: options?.navbarButtons ?? [
+				'full_screen',
+				'switch_dark',
+				'layout_size',
+				'switch_language',
+				'switch_theme',
+				'layout_setting'
+			],
+			themeMode: safeStorageData(StorageKey.themeMode, options?.themeMode ?? 'auto'),
+			lightTheme: safeStorageData(StorageKey.lightTheme, options?.lightTheme ?? lightThemes[0]),
+			darkTheme: safeStorageData(StorageKey.darkTheme, options?.darkTheme ?? darkThemes[0]),
+			lightTextColor: options?.lightTextColor ?? '#495057',
+			darkTextColor: options?.darkTextColor ?? '#f8f9fa'
+		}
+		app.provide(layoutConfigKey, config)
+	}
 }
 
 /**
  * 创建Layout路由
  * @param routes      layout子路由
  * @param layoutPath  layout路由地址，默认：'/'
+ * @param redirectPath  重定向地址
  * @returns
  */
-function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/'): RouteRecordRaw {
-  return {
-    path: layoutPath,
-    name: 'Layout',
-    component: Layout,
-    children: routes
-  }
+function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirectPath?: string): RouteRecordRaw {
+	return {
+		path: layoutPath,
+		name: 'Layout',
+    redirect: redirectPath,
+		component: Layout,
+		children: routes
+	}
 }
 
-export {
-  layoutConfigKey,
-  layoutKey,
-  themeKey,
-  breakpointKey,
-  NestRouterView,
-  installAdminLayout,
-  createLayoutRouter
-}
+export { layoutConfigKey, layoutKey, themeKey, breakpointKey, NestRouterView, installAdminLayout, createLayoutRouter }
