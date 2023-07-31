@@ -10,7 +10,6 @@ import App from './App.vue'
 createApp(App)
 	.use(router)
 	.use(installAdminLayout, {
-		title: 'Luoyi后台管理系统',
 		logo: 'img/logo.png'
 	})
 	.mount('#app')

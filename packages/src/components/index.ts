@@ -1,5 +1,5 @@
 import { App, UnwrapNestedRefs, InjectionKey } from 'vue'
-import { BreakpointKey, LayoutConfig, LayoutKey, ThemeKey } from '../types'
+import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, ThemeReactiveData, drawerPositionType } from '../types'
 import { StorageKey, darkThemes, lightThemes } from '../config'
 
 import Layout from './layout/Layout.vue'
@@ -15,20 +15,21 @@ import { safeStorageData } from 'element-admin-layout-utils'
 const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
 
 /** 布局响应式数据 */
-const layoutKey: InjectionKey<UnwrapNestedRefs<LayoutKey>> = Symbol()
+const layoutKey: InjectionKey<UnwrapNestedRefs<LayoutReactiveData>> = Symbol()
 
 /** 主题响应式数据 */
-const themeKey: InjectionKey<ThemeKey> = Symbol()
+const themeKey: InjectionKey<ThemeReactiveData> = Symbol()
 
 /** 响应式断点数据 */
-const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointKey>> = Symbol()
+const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointReactiveData>> = Symbol()
 
 /** 安装element-admin-layout插件 */
 const installAdminLayout = {
 	install(app: App, options?: LayoutConfig) {
-		const config: LayoutConfig = {
+		const layoutConfig: LayoutConfig = {
 			title: options?.title ?? '后台管理系统',
 			logo: options?.logo ?? undefined,
+			size: options?.size ?? 'default',
 			navbarButtons: options?.navbarButtons ?? [
 				'full_screen',
 				'switch_dark',
@@ -37,13 +38,84 @@ const installAdminLayout = {
 				'switch_theme',
 				'layout_setting'
 			],
-			themeMode: safeStorageData(StorageKey.themeMode, options?.themeMode ?? 'auto'),
-			lightTheme: safeStorageData(StorageKey.lightTheme, options?.lightTheme ?? lightThemes[0]),
-			darkTheme: safeStorageData(StorageKey.darkTheme, options?.darkTheme ?? darkThemes[0]),
+			themeMode: options?.themeMode ?? 'auto',
+			lightTheme: options?.lightTheme ?? lightThemes[0],
+			darkTheme: options?.darkTheme ?? darkThemes[0],
 			lightTextColor: options?.lightTextColor ?? '#495057',
 			darkTextColor: options?.darkTextColor ?? '#f8f9fa'
 		}
-		app.provide(layoutConfigKey, config)
+
+		const layoutData = reactive(
+			safeStorageData<LayoutReactiveData>(StorageKey.layoutData, {
+				size: layoutConfig.size!,
+				isCollapse: false,
+				showSidebarDarwer: false,
+				autoCloseMenu: false,
+				openKeepalive: false,
+				drawerPosition: 'rtl' as drawerPositionType,
+				menus: [],
+				navTabs: []
+			})
+		)
+
+		const isDark = useDark({
+			initialValue: safeStorageData(StorageKey.themeMode, options?.themeMode ?? 'auto')
+		})
+		const toggleDark = useToggle(isDark)
+		const lightTheme = ref(safeStorageData(StorageKey.lightTheme, layoutConfig.lightTheme!))
+		const darkTheme = ref(safeStorageData(StorageKey.darkTheme, layoutConfig.darkTheme!))
+		const currentTheme = computed(() => (isDark.value ? darkTheme.value : lightTheme.value))
+		const themeData = {
+			isDark,
+			currentTheme,
+			lightTheme,
+			darkTheme,
+			toggleDark
+		}
+
+		const breakpointData = reactive<BreakpointReactiveData>({
+			width: 0,
+			height: 0,
+			mobile: false,
+			xs: false,
+			sm: false,
+			md: false,
+			lg: false,
+			xl: false
+		})
+
+		const navbarHeight = computed(() => {
+			switch (layoutData.size) {
+				case 'small':
+					return 48
+				case 'default':
+					return 56
+				case 'large':
+					return 64
+			}
+		})
+
+		const sidebarWidth = computed(() => {
+			if (breakpointData.mobile) return 0
+			else return layoutData.isCollapse ? 64 : 240
+		})
+
+		watch(layoutData, value => {
+			localStorage.setItem(StorageKey.layoutData, JSON.stringify(value))
+		})
+		watch(lightTheme, value => {
+			localStorage.setItem(StorageKey.lightTheme, JSON.stringify(value))
+		})
+		watch(darkTheme, value => {
+			localStorage.setItem(StorageKey.darkTheme, JSON.stringify(value))
+		})
+
+		app.provide(layoutConfigKey, layoutConfig)
+		app.provide(layoutKey, layoutData)
+		app.provide(themeKey, themeData)
+		app.provide(breakpointKey, breakpointData)
+		app.provide('navbarHeight', navbarHeight)
+		app.provide('sidebarWidth', sidebarWidth)
 	}
 }
 
@@ -58,7 +130,7 @@ function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirect
 	return {
 		path: layoutPath,
 		name: 'Layout',
-    redirect: redirectPath,
+		redirect: redirectPath,
 		component: Layout,
 		children: routes
 	}

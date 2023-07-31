@@ -1,14 +1,14 @@
 <template>
-  <aside
-    id="admin-layout-sidebar"
-    :style="{
-      width: sidebarWidth + 'px',
-      height: `calc(100% - ${navbarHeight}px)`,
-      top: navbarHeight + 'px',
-      backgroundColor: currentTheme.layout.sidebar
-    }">
-    <MenuWrapper />
-  </aside>
+	<aside
+		id="admin-layout-sidebar"
+		:style="{
+			width: sidebarWidth + 'px',
+			height: `calc(100% - ${navbarHeight}px)`,
+			top: navbarHeight + 'px',
+			backgroundColor: currentTheme.layout.sidebar
+		}">
+		<MenuWrapper />
+	</aside>
 </template>
 
 <script setup lang="ts">
@@ -22,9 +22,9 @@ const sidebarWidth = inject('sidebarWidth')!
 
 <style lang="scss">
 #admin-layout-sidebar {
-  position: absolute;
-  left: 0;
-  user-select: none;
-  transition: all 0.3s;
+	position: absolute;
+	left: 0;
+	user-select: none;
+	transition: all 0.3s;
 }
 </style>
