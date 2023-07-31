@@ -33,8 +33,8 @@ import PresetTheme from './PresetTheme.vue'
 import CustomTheme from './CustomTheme.vue'
 
 const showThemePanel = ref(false)
-const layoutData = inject(layoutKey)
-const { isDark, lightTheme, darkTheme } = inject(themeKey)
+const layoutData = inject(layoutKey)!
+const { isDark, lightTheme, darkTheme } = inject(themeKey)!
 
 function resetTheme() {
   localStorage.removeItem(StorageKey.lightTheme)

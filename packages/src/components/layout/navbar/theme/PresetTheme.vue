@@ -32,7 +32,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const themeData = inject(themeKey)
+const themeData = inject(themeKey)!
 
 function setTheme(theme: LayoutThemeModel) {
   if (props.isDark) {

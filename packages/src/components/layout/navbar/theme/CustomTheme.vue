@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { ElDivider, ElColorPicker } from 'element-plus'
 import { themeKey } from '../../../../components'
-const { currentTheme } = inject(themeKey)
+const { currentTheme } = inject(themeKey)!
 </script>
 
 <style scoped lang="scss"></style>
