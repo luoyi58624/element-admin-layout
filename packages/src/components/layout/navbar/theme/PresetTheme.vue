@@ -3,7 +3,10 @@
     <h4>{{ title }}</h4>
   </ElDivider>
   <div class="w-full flex flex-nowrap">
-    <div v-for="theme in themes" class="aspect-square flex-1 m-1 relative cursor-pointer" @click="setTheme(theme)">
+    <div
+      v-for="theme in themes"
+      class="aspect-square flex-1 m-1 relative cursor-pointer"
+      @click="setTheme(theme)">
       <header
         class="w-full h-15/100 absolute top-0 left-0"
         :style="{ background: theme.layout.navbar }" />
@@ -18,7 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from '../../../../config'
+import { ElDivider } from 'element-plus'
+import { themeKey } from '../../../../components'
 import { LayoutThemeModel } from '../../../..'
 
 interface Props {
@@ -31,14 +35,10 @@ const props = defineProps<Props>()
 const themeData = inject(themeKey)
 
 function setTheme(theme: LayoutThemeModel) {
-  console.log(theme)
-
   if (props.isDark) {
     themeData.isDark.value = true
     themeData.darkTheme.value = Object.assign({}, theme)
   } else {
-    console.log('设置明亮主题');
-    
     themeData.isDark.value = false
     themeData.lightTheme.value = Object.assign({}, theme)
   }

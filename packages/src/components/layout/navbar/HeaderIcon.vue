@@ -1,7 +1,7 @@
 <template>
   <div
     class="header-icon-wrapper"
-    :style="{ fontSize: size + 'px' }"
+    :style="{ fontSize: size + 'px', color: navbarTextColor }"
     @click="emits('click', $event)"
     @mousedown="addRipper"
     @mouseup="removeRipper"
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import Ripple from '../../../components/ripple/Ripple.vue'
-import { themeKey } from '../../../config'
+import { themeKey } from '../../../components'
 import { deepenColor } from '../../../utils'
 
 defineProps({
@@ -26,6 +26,7 @@ defineProps({
 
 const emits = defineEmits(['click'])
 const { currentTheme } = inject(themeKey)!
+const navbarTextColor = inject<string>('navbarTextColor')!
 
 const ripperRef = ref()
 
@@ -53,6 +54,7 @@ function removeRipper() {
   cursor: pointer;
   border-radius: 50%;
   overflow: hidden;
+  outline: none;
 
   &:hover {
     background: v-bind(hoverColor);

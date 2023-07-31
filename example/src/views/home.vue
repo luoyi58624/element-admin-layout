@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from 'element-admin-layout-config'
+import { themeKey } from 'element-admin-layout-components'
 
 const themeData = inject(themeKey)!
 </script>

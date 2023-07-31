@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import Navbar from './Navbar.vue'
+import Navbar from './navbar/Navbar.vue'
 import Sidebar from './Sidebar.vue'
 import Section from './Section.vue'
-import {
-  layoutKey,
-  breakpointKey,
-  themeKey,
-  layoutConfigKey,
-  drawerPositionType
-} from '../../config'
+import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../../components'
+import { StorageKey } from '../../config'
+import { drawerPositionType } from '../../types'
 
 const layoutConfig = inject(layoutConfigKey)
 
+const scope = effectScope()
 const isDark = useDark({
   initialValue: layoutConfig.themeMode
 })
@@ -70,6 +67,19 @@ provide(themeKey, {
 provide(breakpointKey, breakpointData)
 provide('navbarHeight', navbarHeight)
 provide('sidebarWidth', sidebarWidth)
+
+scope.run(() => {
+  watch(lightTheme, value => {
+    localStorage.setItem(StorageKey.lightTheme, JSON.stringify(value))
+  })
+  watch(darkTheme, value => {
+    localStorage.setItem(StorageKey.darkTheme, JSON.stringify(value))
+  })
+})
+
+onUnmounted(() => {
+  scope.stop()
+})
 </script>
 
 <template>
@@ -141,6 +151,11 @@ h6 {
     margin-top: 20px;
     padding-left: 20px;
     padding-bottom: 20px;
+  }
+
+  /* 隐藏颜色选择器清除按钮 */
+  .el-color-dropdown__btns > :nth-child(2) {
+    display: none !important;
   }
 }
 </style>

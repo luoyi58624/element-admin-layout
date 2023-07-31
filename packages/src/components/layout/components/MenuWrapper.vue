@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
-import { breakpointKey, layoutConfigKey, layoutKey, themeKey } from '../../../config'
+import { breakpointKey, layoutConfigKey, layoutKey, themeKey } from '../../../components'
 import { routeToMenu, isDark as isDarkColor } from '../../../utils'
 
 const router = useRouter()

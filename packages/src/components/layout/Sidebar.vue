@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from '../../config'
+import { themeKey } from '../../components'
 import MenuWrapper from './components/MenuWrapper.vue'
 
 const { currentTheme } = inject(themeKey)!

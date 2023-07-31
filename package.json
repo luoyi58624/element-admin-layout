@@ -9,9 +9,9 @@
     "build": "pnpm run -C packages build"
   },
   "dependencies": {
+    "@unocss/reset": "^0.54.0",
     "element-admin-layout-components": "workspace:*",
     "element-admin-layout-config": "workspace:*",
-    "element-admin-layout-style": "workspace:*",
     "element-admin-layout-types": "workspace:*",
     "element-admin-layout-utils": "workspace:*",
     "vue": "^3.3.4",

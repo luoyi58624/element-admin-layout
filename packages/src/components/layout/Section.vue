@@ -6,7 +6,7 @@
       height: `calc(100% - ${navbarHeight}px)`,
       left: sidebarWidth + 'px',
       top: navbarHeight + 'px',
-      backgroundColor: isDark ? darkTheme.layout.section : lightTheme.layout.section
+      backgroundColor: currentTheme.layout.section
     }">
     <div class="w-full p-2 overflow-hidden overflow-y-auto">
       <NestRouterView />
@@ -15,10 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from '../../config'
+import { themeKey } from '../../components'
 import NestRouterView from './components/NestRouterView.vue'
 
-const { isDark, lightTheme, darkTheme } = inject(themeKey)!
+const { currentTheme } = inject(themeKey)!
 const navbarHeight = inject('navbarHeight')!
 const sidebarWidth = inject('sidebarWidth')!
 </script>

@@ -1,9 +1,22 @@
+import { Ref } from 'vue'
+
+/** 导航栏头部按钮 */
+export type navbarButtonType =
+  | 'full_screen'
+  | 'layout_size'
+  | 'switch_dark'
+  | 'switch_theme'
+  | 'switch_language'
+  | 'layout_setting'
+
 /** Layout组件props */
 export interface LayoutConfig {
   /** 导航栏标题，默认：后台管理系统 */
   title?: string
   /** 导航栏左侧logo */
   logo?: string
+  /** 导航头显示的头部按钮，默认全部显示 */
+  navbarButtons?: Array<navbarButtonType>
   /** 导航栏右侧组件，请自行注册全局组件，然后传递该组件名字 */
   navbarRightComponent?: string
   /** 初始化应用主题模式，默认跟随平台：auto */
@@ -67,4 +80,51 @@ export interface NavTabModel {
   title: string // 标签名字
   path: string // 标签跳转url
   icon: string // 标签icon
+}
+
+export type drawerPositionType = 'rtl' | 'ltr' | 'ttb' | 'btt'
+
+export interface LayoutKey {
+  /** 页面组件大小 */
+  size: string
+  /** 是否缩放sidebar */
+  isCollapse: boolean
+  /** 是否开启导航标签 */
+  openNavTab: boolean
+  /** 小屏下是否显示sidebar弹窗 */
+  showSidebarDarwer: boolean
+  /** 是否自动折叠菜单 */
+  autoCloseMenu: boolean
+  /** 是否开启页面缓存 */
+  openKeepalive: boolean
+  /** drawer位置 */
+  drawerPosition: drawerPositionType
+  /** sidebar菜单 */
+  menus: Array<LayoutMenuModel>
+  /** 路由标签 */
+  navTabs: Array<NavTabModel>
+}
+
+export interface ThemeKey {
+  /** 是否处于黑暗模式 */
+  isDark: Ref<boolean>
+  /** 当前主题 */
+  currentTheme: Ref<LayoutThemeModel>
+  /** 当前主题 */
+  lightTheme: Ref<LayoutThemeModel>
+  /** 当前主题 */
+  darkTheme: Ref<LayoutThemeModel>
+  /** 切换黑暗模式 */
+  toggleDark: () => void
+}
+
+export interface BreakpointKey {
+  width: number
+  height: number
+  mobile: boolean
+  xs: boolean
+  sm: boolean
+  md: boolean
+  lg: boolean
+  xl: boolean
 }
