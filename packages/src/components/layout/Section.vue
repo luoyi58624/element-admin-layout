@@ -1,17 +1,17 @@
 <template>
-  <div
-    id="admin-layout-section"
-    :style="{
-      width: `calc(100% - ${sidebarWidth}px)`,
-      height: `calc(100% - ${navbarHeight}px)`,
-      left: sidebarWidth + 'px',
-      top: navbarHeight + 'px',
-      backgroundColor: currentTheme.layout.section
-    }">
-    <div class="w-full p-2 overflow-hidden overflow-y-auto">
-      <NestRouterView />
-    </div>
-  </div>
+	<div
+		id="admin-layout-section"
+		:style="{
+			width: `calc(100% - ${sidebarWidth}px)`,
+			height: `calc(100% - ${navbarHeight}px)`,
+			left: sidebarWidth + 'px',
+			top: navbarHeight + 'px',
+			backgroundColor: currentTheme.layout.section
+		}">
+		<div class="w-full h-full overflow-hidden overflow-y-auto">
+			<NestRouterView />
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -25,8 +25,8 @@ const sidebarWidth = inject('sidebarWidth')!
 
 <style lang="scss">
 #admin-layout-section {
-  position: absolute;
-  transition-property: width, left;
-  transition-duration: 300ms;
+	position: absolute;
+	transition-property: width, left;
+	transition-duration: 300ms;
 }
 </style>

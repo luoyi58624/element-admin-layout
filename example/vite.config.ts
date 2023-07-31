@@ -7,6 +7,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
+  base: '/element-admin-layout/',
   plugins: [
     vue(),
     Unocss({
@@ -24,5 +25,8 @@ export default defineConfig({
       dirs: ['src/components']
     }),
     ElementPlus({})
-  ]
+  ],
+  server:{
+    port: 7989
+  }
 })

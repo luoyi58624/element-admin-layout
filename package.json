@@ -6,7 +6,8 @@
 		"docs"
 	],
 	"scripts": {
-		"build": "pnpm run -C packages build"
+		"build": "pnpm run -C packages build",
+		"build:example": "pnpm run -C example build"
 	},
 	"dependencies": {
 		"@unocss/reset": "^0.54.0",

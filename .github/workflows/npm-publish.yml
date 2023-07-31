@@ -1,4 +1,4 @@
-name: Node.js Package
+name: 发布npm包
 
 on:
   push:

@@ -1,0 +1,27 @@
+name: 部署示例页面
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: |
+          pnpm i --no-frozen-lockfile
+          pnpm run build:example
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: example_pages
+          folder: example/dist
+          clean: true

@@ -9,7 +9,7 @@ export type navbarButtonType =
   | 'switch_language'
   | 'layout_setting'
 
-/** Layout组件props */
+/** Layout配置 */
 export interface LayoutConfig {
   /** 导航栏标题，默认：后台管理系统 */
   title?: string
