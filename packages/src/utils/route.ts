@@ -13,11 +13,11 @@ export function routeToMenu(routes: Array<RouteRecordRaw>, parentPath?: string):
 	routes.forEach(route => {
 		let path = route.path
 		if (!isEmpty(parentPath)) {
-			if (parentPath.endsWith('/')) {
+			if (parentPath!.endsWith('/')) {
 				path = parentPath + route.path
 			} else {
 				if (isEmpty(route.path)) {
-					path = parentPath
+					path = parentPath!
 				} else {
 					path = parentPath + '/' + route.path
 				}
@@ -28,8 +28,8 @@ export function routeToMenu(routes: Array<RouteRecordRaw>, parentPath?: string):
 			path: path,
 			icon: route.meta?.icon ?? ''
 		}
-		if (!isEmpty(route.children) && route.children.length > 0) {
-			menu.children = routeToMenu(route.children, menu.path)
+		if (!isEmpty(route.children) && route.children!.length > 0) {
+			menu.children = routeToMenu(route.children!, menu.path)
 		}
 		menus.push(menu)
 	})
