@@ -37,7 +37,19 @@ const sliderTextColor = computed(() =>
 const layoutRoutes = router.getRoutes().filter(item => item.name === 'Layout')
 if (layoutRoutes.length > 0) {
 	menus.value = routeToMenu(layoutRoutes[0].children, layoutRoutes[0].path)
+	nextTick(() => {
+		setTimeout(() => {
+			const doms = document.getElementsByClassName('el-menu-item is-active')
+			if (doms.length > 0) {
+				doms[0].scrollIntoView()
+			}
+		}, 500)
+	})
 }
+
+watchEffect(() => {
+	document.documentElement.style.setProperty('--sidebar-active-color', currentTheme.value.layout.sidebarActiveText)
+})
 </script>
 
 <style lang="scss">
@@ -45,8 +57,7 @@ if (layoutRoutes.length > 0) {
 	border-right: none !important;
 }
 
-.is-active > .el-sub-menu__title,
-.is-active > .el-submenu__title > i:nth-child(1) {
-	color: v-bind('currentTheme.layout.sidebarActiveText') !important;
+.el-sub-menu.is-active > .el-sub-menu__title {
+	color: var(--sidebar-active-color) !important;
 }
 </style>

@@ -23,8 +23,27 @@ const themeKey: InjectionKey<ThemeReactiveData> = Symbol()
 /** 响应式断点数据 */
 const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointReactiveData>> = Symbol()
 
+/**
+ * 创建Layout路由
+ * @param routes      layout子路由
+ * @param layoutPath  layout路由地址，默认：'/'
+ * @param redirectPath  重定向地址
+ * @returns
+ */
+function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirectPath?: string): RouteRecordRaw {
+	return {
+		path: layoutPath,
+		name: 'Layout',
+		redirect: redirectPath,
+		component: Layout,
+		children: routes
+	}
+}
+
+export { layoutConfigKey, layoutKey, themeKey, breakpointKey, NestRouterView, installAdminLayout, createLayoutRouter }
+
 /** 安装element-admin-layout插件 */
-const installAdminLayout = {
+export default {
 	install(app: App, options?: LayoutConfig) {
 		const layoutConfig: LayoutConfig = {
 			title: options?.title ?? '后台管理系统',
@@ -38,6 +57,7 @@ const installAdminLayout = {
 				'switch_theme',
 				'layout_setting'
 			],
+			navbarComponents: [],
 			themeMode: options?.themeMode ?? 'auto',
 			lightTheme: options?.lightTheme ?? lightThemes[0],
 			darkTheme: options?.darkTheme ?? darkThemes[0],
@@ -118,22 +138,3 @@ const installAdminLayout = {
 		app.provide('sidebarWidth', sidebarWidth)
 	}
 }
-
-/**
- * 创建Layout路由
- * @param routes      layout子路由
- * @param layoutPath  layout路由地址，默认：'/'
- * @param redirectPath  重定向地址
- * @returns
- */
-function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirectPath?: string): RouteRecordRaw {
-	return {
-		path: layoutPath,
-		name: 'Layout',
-		redirect: redirectPath,
-		component: Layout,
-		children: routes
-	}
-}
-
-export { layoutConfigKey, layoutKey, themeKey, breakpointKey, NestRouterView, installAdminLayout, createLayoutRouter }

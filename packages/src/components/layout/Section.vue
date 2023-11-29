@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from '../../components'
+import { themeKey } from '../index'
 import NestRouterView from './components/NestRouterView.vue'
 
 const { currentTheme } = inject(themeKey)!

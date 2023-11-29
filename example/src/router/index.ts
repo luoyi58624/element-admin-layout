@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/home.vue'
 import { createLayoutRouter, NestRouterView } from 'element-admin-layout-components'
+import { nestRoute } from './nest_route.ts'
 
 const router = createRouter({
 	history: createWebHashHistory(),
@@ -24,18 +25,7 @@ const router = createRouter({
 				},
 				component: () => import('../views/test.vue')
 			},
-			{
-				path: 'nest',
-				name: 'Nest',
-				component: NestRouterView,
-				children: [
-					{
-						path: 'one',
-						name: 'One',
-						component: () => import('../views/nest/one.vue')
-					}
-				]
-			}
+			nestRoute
 		])
 	]
 })

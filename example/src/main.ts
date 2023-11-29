@@ -3,13 +3,13 @@ import router from './router'
 
 import 'uno.css'
 
-import { installAdminLayout } from 'element-admin-layout-components'
+import ElementAdminLayout from 'element-admin-layout-components'
 
 import App from './App.vue'
 
 createApp(App)
 	.use(router)
-	.use(installAdminLayout, {
+	.use(ElementAdminLayout, {
 		logo: 'img/logo.png'
 	})
 	.mount('#app')

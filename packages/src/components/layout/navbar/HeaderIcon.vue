@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import Ripple from '../../../components/ripple/Ripple.vue'
-import { themeKey } from '../../../components'
+import { themeKey } from '../../index'
 import { deepenColor } from '../../../utils'
 
 defineProps({
