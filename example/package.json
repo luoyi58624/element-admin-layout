@@ -4,14 +4,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "update:dep": "ncu -u && pnpm update"
   },
   "dependencies": {
-    "element-plus": "^2.3.8"
+
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.95",
-    "@iconify/vue": "^4.1.1",
-    "unplugin-element-plus": "^0.7.2"
+    "unplugin-element-plus": "^0.8.0"
   }
 }

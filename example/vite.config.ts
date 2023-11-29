@@ -14,7 +14,6 @@ export default defineConfig({
       configFile: '../unocss.config.ts'
     }),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
       imports: ['vue', 'vue-router', '@vueuse/core']
     }),
     Components({

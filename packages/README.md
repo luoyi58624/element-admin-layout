@@ -5,47 +5,22 @@
 ### 1.安装依赖
 
 ```
-npm i element-admin-layout
-
-// 安装vue-router和element-plus
-npm i vue-router@4 element-plus
-
-// 安装按需加载插件unplugin-auto-import、unplugin-vue-components
-npm i -D unplugin-auto-import unplugin-vue-components
+// 安装依赖
+npm i vue-router@4 element-admin-layout
 ```
 
-### 2.修改vite.config.ts配置，添加按需引入element-plus
-```
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
-export default defineConfig({
-  plugins: [
-    vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()]
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()]
-    })
-  ],
-})
-```
-### 3.修改main.ts
+### 2.修改main.ts
 
 ```
 import { createApp } from 'vue'
-import router from './router'
 import App from './App.vue'
-import AdminLayout from 'element-admin-layout'
+import router from './router'
+import { installAdminLayout } from "element-admin-layout"
 import 'element-admin-layout/dist/style.css'
-createApp(App).use(router).use(AdminLayout).mount('#app')
+createApp(App).use(router).use(installAdminLayout).mount('#app')
 ```
 
-### 4.修改App.vue
+### 3.修改App.vue
 
 ```
 <template>
@@ -53,11 +28,11 @@ createApp(App).use(router).use(AdminLayout).mount('#app')
 </template>
 ```
 
-### 5.src目录下新建router.ts
+### 4.src目录下新建router.ts
 
 ```
-import { createLayoutRouter } from 'element-admin-layout'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { createLayoutRouter } from 'element-admin-layout'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -79,11 +54,11 @@ const router = createRouter({
 export default router
 ```
 
-### 6.新增views文件夹，并创建home.vue
+### 5.新增views文件夹，并创建home.vue
 
 ```
 <template>
-  <div>
+  <div style="padding: 8px">
     <h1>首页</h1>
   </div>
 </template>

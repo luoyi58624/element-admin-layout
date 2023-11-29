@@ -16,10 +16,10 @@ export default defineConfig({
   },
   presets: [
     presetUno(),
-    presetAttributify(),
     presetIcons({
       prefix: 'i-'
     }),
+    presetAttributify(),
     presetTypography(),
     presetWebFonts({
       fonts: {
