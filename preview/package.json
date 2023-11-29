@@ -1,8 +1,7 @@
 {
-  "name": "docs",
+  "name": "preview",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,7 +9,10 @@
     "update:dep": "ncu -u && pnpm update"
   },
   "dependencies": {
-    "element-admin-layout": "workspace:^"
+    "vue": "^3.3.9",
+    "vue-router": "4.2.5",
+    "element-plus": "^2.4.3",
+    "element-admin-layout": "workspace:*"
   },
   "devDependencies": {}
 }

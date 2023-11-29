@@ -2,15 +2,15 @@ import { App, UnwrapNestedRefs, InjectionKey } from 'vue'
 import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, ThemeReactiveData, drawerPositionType } from '../types'
 import { StorageKey, darkThemes, lightThemes } from '../config'
 
-import Layout from './layout/Layout.vue'
-import NestRouterView from './layout/components/NestRouterView.vue'
+import Layout from '../layout/Layout.vue'
+import NestRouterView from '../layout/components/NestRouterView.vue'
 
-import SwitchFullScreen from './layout/navbar/SwitchFullScreen.vue'
-import SwitchDark from './layout/navbar/SwitchDark.vue'
-import SwitchSize from './layout/navbar/SwitchSize.vue'
-import SwitchLanguage from './layout/navbar/SwitchLanguage.vue'
-import SwitchTheme from './layout/navbar/theme/SwitchTheme.vue'
-import LayoutSetting from './layout/navbar/LayoutSetting.vue'
+import SwitchFullScreen from './navbar/SwitchFullScreen.vue'
+import SwitchDark from './navbar/SwitchDark.vue'
+import SwitchSize from './navbar/SwitchSize.vue'
+import SwitchLanguage from './navbar/SwitchLanguage.vue'
+import SwitchTheme from '../layout/navbar/theme/SwitchTheme.vue'
+import LayoutSetting from './navbar/LayoutSetting.vue'
 
 import 'uno.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
@@ -47,23 +47,8 @@ function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirect
 	}
 }
 
-export {
-	layoutConfigKey,
-	layoutKey,
-	themeKey,
-	breakpointKey,
-	NestRouterView,
-	SwitchFullScreen,
-	SwitchDark,
-	SwitchSize,
-	SwitchLanguage,
-	SwitchTheme,
-	LayoutSetting,
-	createLayoutRouter
-}
-
 /** 安装element-admin-layout插件 */
-export default {
+const installElementAdminLayout = {
 	install(app: App, options?: LayoutConfig) {
 		const layoutConfig: LayoutConfig = {
 			title: options?.title ?? '后台管理系统',
@@ -149,4 +134,20 @@ export default {
 		app.provide('navbarHeight', navbarHeight)
 		app.provide('sidebarWidth', sidebarWidth)
 	}
+}
+
+export {
+	installLayout,
+	layoutConfigKey,
+	layoutKey,
+	themeKey,
+	breakpointKey,
+	NestRouterView,
+	SwitchFullScreen,
+	SwitchDark,
+	SwitchSize,
+	SwitchLanguage,
+	SwitchTheme,
+	LayoutSetting,
+	createLayoutRouter
 }

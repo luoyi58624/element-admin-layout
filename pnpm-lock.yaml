@@ -26,6 +26,9 @@ importers:
       element-admin-layout-utils:
         specifier: workspace:*
         version: link:packages/src/utils
+      element-plus:
+        specifier: ^2.4.3
+        version: 2.4.3(vue@3.3.9)
       vue:
         specifier: ^3.3.9
         version: 3.3.9(typescript@5.3.2)
@@ -78,15 +81,12 @@ importers:
       element-admin-layout:
         specifier: workspace:^
         version: link:../packages
-      element-plus:
-        specifier: ^2.4.3
-        version: 2.4.3(vue@3.3.9)
 
   example:
-    devDependencies:
-      unplugin-element-plus:
-        specifier: ^0.8.0
-        version: 0.8.0
+    dependencies:
+      element-admin-layout:
+        specifier: workspace:*
+        version: link:../packages
 
   packages:
 
@@ -122,6 +122,12 @@ importers:
   packages/src/types: {}
 
   packages/src/utils: {}
+
+  play:
+    devDependencies:
+      unplugin-element-plus:
+        specifier: ^0.8.0
+        version: 0.8.0
 
 packages:
 

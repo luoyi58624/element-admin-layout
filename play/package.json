@@ -1,8 +1,6 @@
 {
-  "name": "docs",
+  "name": "play",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,7 +8,8 @@
     "update:dep": "ncu -u && pnpm update"
   },
   "dependencies": {
-    "element-admin-layout": "workspace:^"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "unplugin-element-plus": "^0.8.0"
+  }
 }

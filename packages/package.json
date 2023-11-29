@@ -1,40 +1,39 @@
 {
-	"name": "element-admin-layout",
-	"version": "0.0.8",
-	"author": {
-		"name": "luoyi",
-		"email": "luoyi58624@gamil.com"
-	},
-	"license": "MIT",
-	"homepage": "https://luoyi58624.github.io/element-admin-layout/#/",
-	"type": "module",
-	"files": [
-		"dist",
-		"packages.json",
-		"README.md"
-	],
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/luoyi58624/element-admin-layout.git"
-	},
-	"scripts": {
-		"build": "vite build",
-		"update:dep": "ncu -u && pnpm update"
-	},
-	"peerDependencies": {
-		"vue": "^3.3.4",
-		"vue-router": "^4.2.4"
-	},
-	"dependencies": {
-		"@ctrl/tinycolor": "^4.0.2",
-		"screenfull": "^6.0.2",
-		"element-plus": "^2.4.3"
-	},
-	"devDependencies": {
-
-		"unplugin-element-plus": "^0.8.0",
-		"vite-plugin-dts": "^3.6.3"
-	}
+  "name": "element-admin-layout",
+  "version": "0.0.8",
+  "author": {
+    "name": "luoyi",
+    "email": "luoyi58624@gamil.com"
+  },
+  "license": "MIT",
+  "homepage": "https://luoyi58624.github.io/element-admin-layout/#/",
+  "type": "module",
+  "files": [
+    "dist",
+    "packages.json",
+    "README.md"
+  ],
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoyi58624/element-admin-layout.git"
+  },
+  "scripts": {
+    "build": "vite build",
+    "update:dep": "ncu -u && pnpm update"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "element-plus": "^2.4.3"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^4.0.2",
+    "screenfull": "^6.0.2"
+  },
+  "devDependencies": {
+    "unplugin-element-plus": "^0.8.0",
+    "vite-plugin-dts": "^3.6.3"
+  }
 }

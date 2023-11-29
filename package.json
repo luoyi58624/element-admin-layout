@@ -3,23 +3,27 @@
   "workspaces": [
     "packages",
     "example",
+    "example_prod",
     "docs"
   ],
   "scripts": {
-    "dev": "pnpm run -C example dev",
     "build": "pnpm run -C packages build",
-    "build:example": "pnpm run -C example build",
-    "update:dep": "ncu -u && pnpm update && pnpm run -C packages update:dep && pnpm run -C example update:dep && pnpm run -C docs update:dep"
+    "play": "pnpm run -C play dev",
+    "build:play": "pnpm run -C play build",
+    "preview": "pnpm run -C preview dev",
+    "build:preview": "pnpm run -C preview build",
+    "update:dep": "ncu -u && pnpm update && pnpm run -C packages update:dep && pnpm run -C play update:dep && pnpm run -C docs update:dep"
   },
   "dependencies": {
     "@unocss/reset": "^0.57.7",
+    "@vueuse/core": "^10.6.1",
     "element-admin-layout-components": "workspace:*",
     "element-admin-layout-config": "workspace:*",
     "element-admin-layout-types": "workspace:*",
     "element-admin-layout-utils": "workspace:*",
     "vue": "^3.3.9",
     "vue-router": "4.2.5",
-    "@vueuse/core": "^10.6.1"
+    "element-plus": "^2.4.3"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
