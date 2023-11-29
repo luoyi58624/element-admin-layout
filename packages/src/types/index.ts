@@ -1,8 +1,5 @@
 import { Component, Ref } from 'vue'
 
-/** 导航栏头部按钮 */
-export type navbarButtonType = 'full_screen' | 'layout_size' | 'switch_dark' | 'switch_theme' | 'switch_language' | 'layout_setting'
-
 /** 布局尺寸 */
 export type layoutSize = 'large' | 'default' | 'small'
 /** element-plus drawer位置 */
@@ -16,8 +13,8 @@ export interface LayoutConfig {
 	logo?: string
 	/** 初始化应用尺寸，默认default */
 	size?: layoutSize
-	/** 导航头组件，如果传入的是字符串，则会当做全局组件解析 */
-	navbarComponents?: Array<Component | string>
+	/** 导航头组件 */
+	navbarComponents?: Array<Component>
 	/** 导航栏右侧组件，请自行注册全局组件，然后传递该组件名字 */
 	navbarRightComponent?: string
 	/** 是否开启导航标签，默认false */

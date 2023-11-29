@@ -59,7 +59,6 @@ export {
 	SwitchLanguage,
 	SwitchTheme,
 	LayoutSetting,
-	installAdminLayout,
 	createLayoutRouter
 }
 
@@ -70,14 +69,6 @@ export default {
 			title: options?.title ?? '后台管理系统',
 			logo: options?.logo ?? undefined,
 			size: options?.size ?? 'default',
-			// navbarButtons: options?.navbarButtons ?? [
-			// 	'full_screen',
-			// 	'switch_dark',
-			// 	'layout_size',
-			// 	'switch_language',
-			// 	'switch_theme',
-			// 	'layout_setting'
-			// ],
 			navbarComponents: options?.navbarComponents ?? [],
 			themeMode: options?.themeMode ?? 'auto',
 			lightTheme: options?.lightTheme ?? lightThemes[0],

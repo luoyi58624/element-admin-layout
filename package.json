@@ -9,7 +9,7 @@
     "dev": "pnpm run -C example dev",
     "build": "pnpm run -C packages build",
     "build:example": "pnpm run -C example build",
-    "update:dep": "ncu -u && pnpm update && pnpm run -C packages update:dep && pnpm run -C example update:dep"
+    "update:dep": "ncu -u && pnpm update && pnpm run -C packages update:dep && pnpm run -C example update:dep && pnpm run -C docs update:dep"
   },
   "dependencies": {
     "@unocss/reset": "^0.57.7",
