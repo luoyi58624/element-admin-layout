@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/home.vue'
-import { createLayoutRouter, NestRouterView } from 'element-admin-layout-components'
+import { createLayoutRouter } from 'element-admin-layout-components'
 import { nestRoute } from './nest_route.ts'
 
 const router = createRouter({

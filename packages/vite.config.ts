@@ -28,7 +28,7 @@ export default defineConfig({
 			formats: ['es']
 		},
 		rollupOptions: {
-			external: ['vue', 'vue-router']
+			external: ['vue', 'vue-router', 'element-plus']
 		}
 	}
 })

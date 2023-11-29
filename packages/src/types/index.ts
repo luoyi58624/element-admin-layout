@@ -16,10 +16,8 @@ export interface LayoutConfig {
 	logo?: string
 	/** 初始化应用尺寸，默认default */
 	size?: layoutSize
-	/** 导航头显示的头部按钮，默认全部显示 */
-	navbarButtons?: Array<navbarButtonType>
-	/** 导航头组件 */
-	navbarComponents?: Array<Component>
+	/** 导航头组件，如果传入的是字符串，则会当做全局组件解析 */
+	navbarComponents?: Array<Component | string>
 	/** 导航栏右侧组件，请自行注册全局组件，然后传递该组件名字 */
 	navbarRightComponent?: string
 	/** 是否开启导航标签，默认false */

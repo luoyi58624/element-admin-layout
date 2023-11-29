@@ -5,6 +5,13 @@ import { StorageKey, darkThemes, lightThemes } from '../config'
 import Layout from './layout/Layout.vue'
 import NestRouterView from './layout/components/NestRouterView.vue'
 
+import SwitchFullScreen from './layout/navbar/SwitchFullScreen.vue'
+import SwitchDark from './layout/navbar/SwitchDark.vue'
+import SwitchSize from './layout/navbar/SwitchSize.vue'
+import SwitchLanguage from './layout/navbar/SwitchLanguage.vue'
+import SwitchTheme from './layout/navbar/theme/SwitchTheme.vue'
+import LayoutSetting from './layout/navbar/LayoutSetting.vue'
+
 import 'uno.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
@@ -40,7 +47,21 @@ function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirect
 	}
 }
 
-export { layoutConfigKey, layoutKey, themeKey, breakpointKey, NestRouterView, installAdminLayout, createLayoutRouter }
+export {
+	layoutConfigKey,
+	layoutKey,
+	themeKey,
+	breakpointKey,
+	NestRouterView,
+	SwitchFullScreen,
+	SwitchDark,
+	SwitchSize,
+	SwitchLanguage,
+	SwitchTheme,
+	LayoutSetting,
+	installAdminLayout,
+	createLayoutRouter
+}
 
 /** 安装element-admin-layout插件 */
 export default {
@@ -49,15 +70,15 @@ export default {
 			title: options?.title ?? '后台管理系统',
 			logo: options?.logo ?? undefined,
 			size: options?.size ?? 'default',
-			navbarButtons: options?.navbarButtons ?? [
-				'full_screen',
-				'switch_dark',
-				'layout_size',
-				'switch_language',
-				'switch_theme',
-				'layout_setting'
-			],
-			navbarComponents: [],
+			// navbarButtons: options?.navbarButtons ?? [
+			// 	'full_screen',
+			// 	'switch_dark',
+			// 	'layout_size',
+			// 	'switch_language',
+			// 	'switch_theme',
+			// 	'layout_setting'
+			// ],
+			navbarComponents: options?.navbarComponents ?? [],
 			themeMode: options?.themeMode ?? 'auto',
 			lightTheme: options?.lightTheme ?? lightThemes[0],
 			darkTheme: options?.darkTheme ?? darkThemes[0],

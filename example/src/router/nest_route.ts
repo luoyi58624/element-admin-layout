@@ -5,6 +5,9 @@ export const nestRoute: RouteRecordRaw = {
 	path: 'nest',
 	name: 'Nest',
 	component: NestRouterView,
+	meta: {
+		title: '嵌套菜单'
+	},
 	children: [
 		{
 			path: 'one1',

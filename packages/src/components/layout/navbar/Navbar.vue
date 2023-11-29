@@ -17,18 +17,12 @@
 		</h3>
 		<div class="flex-grow" />
 		<div class="flex items-center pr-4">
-			<Component v-for="component in navbarButtonComponents" :is="component" />
+			<Component v-for="component in layoutConfig.navbarComponents" :is="component" />
 		</div>
 	</header>
 </template>
 
 <script setup lang="ts">
-import SwitchFullScreen from './SwitchFullScreen.vue'
-import SwitchDark from './SwitchDark.vue'
-import LayoutSize from './LayoutSize.vue'
-import SwitchLanguage from './SwitchLanguage.vue'
-import SwitchTheme from './theme/SwitchTheme.vue'
-import LayoutSetting from './LayoutSetting.vue'
 import { isEmpty, deepenColor, isDark as isDarkColor } from '../../../utils'
 import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../../index'
 
@@ -37,7 +31,6 @@ const layoutData = inject(layoutKey)!
 const { currentTheme } = inject(themeKey)!
 const breakpointData = inject(breakpointKey)!
 const navbarHeight = inject('navbarHeight')!
-const navbarButtonComponents = shallowRef<any[]>([])
 
 const navbarTextColor = computed(() =>
 	isDarkColor(currentTheme.value.layout.navbar) ? layoutConfig.darkTextColor! : layoutConfig.lightTextColor!
@@ -52,28 +45,6 @@ function toggleSidebar() {
 }
 
 provide('navbarTextColor', navbarTextColor)
-onBeforeMount(() => {
-	const components: any[] = []
-	if (layoutConfig.navbarButtons!.includes('full_screen')) {
-		components.push(SwitchFullScreen)
-	}
-	if (layoutConfig.navbarButtons!.includes('switch_dark')) {
-		components.push(SwitchDark)
-	}
-	if (layoutConfig.navbarButtons!.includes('layout_size')) {
-		components.push(LayoutSize)
-	}
-	if (layoutConfig.navbarButtons!.includes('switch_language')) {
-		components.push(SwitchLanguage)
-	}
-	if (layoutConfig.navbarButtons!.includes('switch_theme')) {
-		components.push(SwitchTheme)
-	}
-	if (layoutConfig.navbarButtons!.includes('layout_setting')) {
-		components.push(LayoutSetting)
-	}
-	navbarButtonComponents.value = components
-})
 </script>
 
 <style lang="scss">
