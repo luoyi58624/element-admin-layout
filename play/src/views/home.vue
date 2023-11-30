@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<h1>首页</h1>
+		<p>{{ $t('message.hello') }}</p>
 		<button @click="themeData.toggleDark()">切换黑暗模式</button>
 	</div>
 </template>

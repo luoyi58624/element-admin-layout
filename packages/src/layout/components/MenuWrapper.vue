@@ -14,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, inject } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
 import { breakpointKey, layoutConfigKey, layoutKey, themeKey } from '../../components'

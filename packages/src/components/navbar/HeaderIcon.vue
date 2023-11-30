@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import Ripple from '../Ripple.vue'
+import { ref, unref, computed, inject } from 'vue'
+import Ripple from '../ripper/Ripple.vue'
 import { themeKey } from '../index'
 import { deepenColor } from '../../utils'
 
@@ -21,6 +22,7 @@ interface Props {
 	size?: number
 	tooltip?: string
 }
+
 withDefaults(defineProps<Props>(), {
 	size: 20,
 	tooltip: ''

@@ -25,10 +25,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref, inject } from 'vue'
 import { StorageKey, darkThemes, lightThemes } from '../../../config'
-import { layoutKey, themeKey } from '../../../components'
+import { layoutKey, themeKey } from '../../index'
 import { ElDrawer, ElScrollbar } from 'element-plus'
-import HeaderIcon from '../../../components/navbar/HeaderIcon.vue'
+import HeaderIcon from '../HeaderIcon.vue'
 import PresetTheme from './PresetTheme.vue'
 import CustomTheme from './CustomTheme.vue'
 

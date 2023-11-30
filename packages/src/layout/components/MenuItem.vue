@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
-import Icon from '../../components/Icon.vue'
+import Icon from '../../components/icon/Icon.vue'
 
 defineProps(['menu'])
 </script>

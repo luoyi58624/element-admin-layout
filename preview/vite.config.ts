@@ -5,24 +5,24 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()],
-      imports: ['vue', 'vue-router', '@vueuse/core']
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()],
-      extensions: ['vue', 'tsx'],
-      deep: true,
-      directoryAsNamespace: false,
-      dirs: ['src/components']
-    })
-  ],
-  server: {
-    port: 8000
-  },
-  build: {
+	plugins: [
+		vue(),
+		AutoImport({
+			resolvers: [ElementPlusResolver()],
+			imports: ['vue', 'vue-router', '@vueuse/core']
+		}),
+		Components({
+			resolvers: [ElementPlusResolver()],
+			extensions: ['vue', 'tsx'],
+			deep: true,
+			directoryAsNamespace: false,
+			dirs: ['src/components']
+		})
+	],
+	server: {
+		port: 8000
+	},
+	build: {
 		target: 'esnext',
 		minify: 'esbuild',
 		sourcemap: false,
@@ -38,7 +38,7 @@ export default defineConfig({
 				manualChunks: {
 					'vendors/vue': ['vue', 'vue-router'],
 					'vendors/element-plus': ['element-plus'],
-					'vendors/element-admin-layout': ['element-admin-layout'],
+					'vendors/element-admin-layout': ['element-admin-layout']
 				}
 			}
 		}

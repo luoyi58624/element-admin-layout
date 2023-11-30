@@ -23,8 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { isEmpty, deepenColor, isDark as isDarkColor } from '../../utils'
-import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../../components'
+import { computed, inject } from 'vue'
+import { isEmpty, deepenColor, isDark as isDarkColor } from '../utils'
+import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../components'
 
 const layoutConfig = inject(layoutConfigKey)!
 const layoutData = inject(layoutKey)!

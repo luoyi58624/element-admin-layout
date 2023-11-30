@@ -12,8 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { inject } from 'vue'
 import { ElDivider } from 'element-plus'
-import { themeKey } from '../../../components'
+import { themeKey } from '../../index'
 import { LayoutThemeModel } from '../../../index'
 
 interface Props {

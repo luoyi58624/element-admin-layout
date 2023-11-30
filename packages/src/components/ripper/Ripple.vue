@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { isEmpty } from '../utils'
+import { isEmpty } from '../../utils'
 
 interface Ripple {
 	key: any

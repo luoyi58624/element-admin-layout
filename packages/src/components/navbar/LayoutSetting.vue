@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import HeaderIcon from './HeaderIcon.vue'
 const showSettingPanel = ref(false)
 </script>

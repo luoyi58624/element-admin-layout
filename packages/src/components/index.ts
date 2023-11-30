@@ -1,15 +1,17 @@
 import { App, UnwrapNestedRefs, InjectionKey } from 'vue'
-import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, ThemeReactiveData, drawerPositionType } from '../types'
+import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, ThemeReactiveData, drawerPositionType, LayoutLanguage } from '../types'
 import { StorageKey, darkThemes, lightThemes } from '../config'
 
 import Layout from '../layout/Layout.vue'
 import NestRouterView from '../layout/components/NestRouterView.vue'
 
+import LayoutProvide from './provide/LayoutProvide.vue'
+import Icon from './icon/Icon.vue'
 import SwitchFullScreen from './navbar/SwitchFullScreen.vue'
 import SwitchDark from './navbar/SwitchDark.vue'
 import SwitchSize from './navbar/SwitchSize.vue'
 import SwitchLanguage from './navbar/SwitchLanguage.vue'
-import SwitchTheme from '../layout/navbar/theme/SwitchTheme.vue'
+import SwitchTheme from './navbar/theme/SwitchTheme.vue'
 import LayoutSetting from './navbar/LayoutSetting.vue'
 
 import 'uno.css'
@@ -19,16 +21,16 @@ import { RouteRecordRaw } from 'vue-router'
 import { safeStorageData } from 'element-admin-layout-utils'
 
 /** 注入layoutConfig配置*/
-const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
+export const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
 
 /** 布局响应式数据 */
-const layoutKey: InjectionKey<UnwrapNestedRefs<LayoutReactiveData>> = Symbol()
+export const layoutKey: InjectionKey<UnwrapNestedRefs<LayoutReactiveData>> = Symbol()
 
 /** 主题响应式数据 */
-const themeKey: InjectionKey<ThemeReactiveData> = Symbol()
+export const themeKey: InjectionKey<ThemeReactiveData> = Symbol()
 
 /** 响应式断点数据 */
-const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointReactiveData>> = Symbol()
+export const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointReactiveData>> = Symbol()
 
 /**
  * 创建Layout路由
@@ -37,7 +39,7 @@ const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointReactiveData>> = Sy
  * @param redirectPath  重定向地址
  * @returns
  */
-function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirectPath?: string): RouteRecordRaw {
+export function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirectPath?: string): RouteRecordRaw {
 	return {
 		path: layoutPath,
 		name: 'Layout',
@@ -47,13 +49,28 @@ function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', redirect
 	}
 }
 
+/// 默认的语言列表
+export const defaultLanguages: Array<LayoutLanguage> = [
+	{
+		label: '简体中文',
+		value: 'zh-cn'
+	},
+	{
+		label: 'English',
+		value: 'en'
+	}
+]
+
 /** 安装element-admin-layout插件 */
-const installElementAdminLayout = {
+export const installElementAdminLayout = {
 	install(app: App, options?: LayoutConfig) {
 		const layoutConfig: LayoutConfig = {
 			title: options?.title ?? '后台管理系统',
 			logo: options?.logo ?? undefined,
 			size: options?.size ?? 'default',
+			i18n: options?.i18n ?? {
+				languages: defaultLanguages
+			},
 			navbarComponents: options?.navbarComponents ?? [],
 			themeMode: options?.themeMode ?? 'auto',
 			lightTheme: options?.lightTheme ?? lightThemes[0],
@@ -136,18 +153,5 @@ const installElementAdminLayout = {
 	}
 }
 
-export {
-	installLayout,
-	layoutConfigKey,
-	layoutKey,
-	themeKey,
-	breakpointKey,
-	NestRouterView,
-	SwitchFullScreen,
-	SwitchDark,
-	SwitchSize,
-	SwitchLanguage,
-	SwitchTheme,
-	LayoutSetting,
-	createLayoutRouter
-}
+export { StorageKey }
+export { LayoutProvide, Icon, NestRouterView, SwitchFullScreen, SwitchDark, SwitchSize, SwitchLanguage, SwitchTheme, LayoutSetting }

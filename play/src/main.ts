@@ -1,9 +1,11 @@
 import { createApp } from 'vue'
+import i18n from './i18n'
 import router from './router'
 
 import 'uno.css'
 
-import ElementAdminLayout, {
+import {
+	installElementAdminLayout,
 	LayoutSetting,
 	SwitchSize,
 	SwitchDark,
@@ -15,8 +17,9 @@ import ElementAdminLayout, {
 import App from './App.vue'
 
 createApp(App)
+	.use(i18n)
 	.use(router)
-	.use(ElementAdminLayout, {
+	.use(installElementAdminLayout, {
 		logo: 'img/logo.png',
 		navbarComponents: [SwitchFullScreen, SwitchDark, SwitchSize, SwitchLanguage, SwitchTheme, LayoutSetting]
 	})

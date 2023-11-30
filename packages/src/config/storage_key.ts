@@ -1,6 +1,7 @@
 export const StorageKey = {
-  layoutData: 'admin-layout-data',
-  themeMode: 'admin-layout-theme-mode',
-  lightTheme: 'admin-layout-theme-light',
-  darkTheme: 'admin-layout-theme-dark'
+	layoutData: 'admin_layout_data',
+	themeMode: 'admin_layout_theme_mode',
+	lightTheme: 'admin_layout_theme_light',
+	darkTheme: 'admin_layout_theme_dark',
+	language: 'admin_layout_language'
 }

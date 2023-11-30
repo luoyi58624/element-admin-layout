@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Navbar from './navbar/Navbar.vue'
+import Navbar from './Navbar.vue'
 import Sidebar from './Sidebar.vue'
 import Section from './Section.vue'
 </script>

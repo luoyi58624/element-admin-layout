@@ -27,7 +27,11 @@ export function safeStorageData<T>(key: string, defaultValue: T): T {
 	if (isEmpty(str)) {
 		return defaultValue
 	} else {
-		return JSON.parse(str) as T
+		try {
+			return JSON.parse(str) as T
+		} catch (e) {
+			return str as T
+		}
 	}
 }
 

@@ -24,8 +24,9 @@
     "update:dep": "ncu -u && pnpm update"
   },
   "peerDependencies": {
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.4",
+    "vue": "^3.3.9",
+    "vue-router": "^4.2.5",
+    "vue-i18n": "^9",
     "element-plus": "^2.4.3"
   },
   "dependencies": {

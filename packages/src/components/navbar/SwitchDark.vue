@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { inject } from 'vue'
 import HeaderIcon from './HeaderIcon.vue'
 import { themeKey } from '../index'
 const { isDark } = inject(themeKey)!

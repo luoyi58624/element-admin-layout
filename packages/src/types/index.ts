@@ -5,6 +5,14 @@ export type layoutSize = 'large' | 'default' | 'small'
 /** element-plus drawer位置 */
 export type drawerPositionType = 'rtl' | 'ltr' | 'ttb' | 'btt'
 
+/** 支持的语言列表 */
+export interface LayoutLanguage {
+	/** 下拉选项标签名字 */
+	label: string
+	/** 切换的语言，对应i18n中locale属性 */
+	value: string
+}
+
 /** Layout配置 */
 export interface LayoutConfig {
 	/** 导航栏标题，默认：后台管理系统 */
@@ -13,6 +21,10 @@ export interface LayoutConfig {
 	logo?: string
 	/** 初始化应用尺寸，默认default */
 	size?: layoutSize
+	/** i18n国际化配置*/
+	i18n?: {
+		languages?: Array<LayoutLanguage>
+	}
 	/** 导航头组件 */
 	navbarComponents?: Array<Component>
 	/** 导航栏右侧组件，请自行注册全局组件，然后传递该组件名字 */

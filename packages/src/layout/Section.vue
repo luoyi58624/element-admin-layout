@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { inject } from 'vue'
 import { themeKey } from '../components'
 import NestRouterView from './components/NestRouterView.vue'
 

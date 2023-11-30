@@ -54,8 +54,9 @@
 </template>
 
 <script setup lang="ts">
+import { inject } from 'vue'
 import { ElDivider, ElColorPicker } from 'element-plus'
-import { themeKey } from '../../../components'
+import { themeKey } from '../../index'
 
 const { currentTheme } = inject(themeKey)!
 </script>

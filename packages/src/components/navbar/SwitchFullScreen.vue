@@ -3,9 +3,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { showMessage } from '../../utils'
 import screenfull from 'screenfull'
 import HeaderIcon from './HeaderIcon.vue'
-import { showMessage } from '../../utils'
+
 const isFullscreen = ref(false)
 
 function setFullscreen() {
