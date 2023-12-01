@@ -26,16 +26,15 @@
 
 <script setup lang="ts">
 import { ref, inject } from 'vue'
-import { StorageKey, darkThemes, lightThemes } from '../../../config'
-import { layoutKey, themeKey } from '../../index'
+import { StorageKey, darkThemes, lightThemes, layoutDataKey, layoutThemeDataKey } from '../../../config'
 import { ElDrawer, ElScrollbar } from 'element-plus'
 import HeaderIcon from '../HeaderIcon.vue'
 import PresetTheme from './PresetTheme.vue'
 import CustomTheme from './CustomTheme.vue'
 
 const showThemePanel = ref(false)
-const layoutData = inject(layoutKey)!
-const { isDark, lightTheme, darkTheme } = inject(themeKey)!
+const layoutData = inject(layoutDataKey)!
+const { isDark, lightTheme, darkTheme } = inject(layoutThemeDataKey)!
 
 function resetTheme() {
 	localStorage.removeItem(StorageKey.lightTheme)

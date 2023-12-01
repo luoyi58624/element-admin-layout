@@ -21,11 +21,11 @@ import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import HeaderIcon from './HeaderIcon.vue'
 import { useI18n } from 'vue-i18n'
 import { inject } from 'vue'
-import { layoutConfigKey, StorageKey, themeKey } from '../index'
+import { layoutConfigKey, StorageKey, layoutThemeDataKey } from '../../config'
 
 const { locale } = useI18n()
 const layoutConfigData = inject(layoutConfigKey)
-const themeData = inject(themeKey)
+const themeData = inject(layoutThemeDataKey)
 
 function switchLanguage(command) {
 	locale.value = command

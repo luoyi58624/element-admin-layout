@@ -7,9 +7,9 @@
 </template>
 
 <script setup lang="ts">
-import { themeKey } from 'element-admin-layout-components'
+import { layoutThemeDataKey } from 'element-admin-layout-config'
 
-const themeData = inject(themeKey)!
+const themeData = inject(layoutThemeDataKey)!
 </script>
 
 <style scoped lang="scss"></style>

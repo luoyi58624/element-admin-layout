@@ -1,10 +1,7 @@
 /**
- * 判断一个对象 || 数组 || 字符串(包括空格) 是否为空
- * @play null、undefined、'undefined'、[]、''、' '
- * @param obj
- * @return {boolean}
+ * 判断一个对象 || 数组 || 字符串(包括空格) 是否为空: null、undefined、'undefined'、[]、''、' '
  */
-export function isEmpty(obj) {
+export function isEmpty(obj: any) {
 	if (obj === null || obj === undefined || obj === 'undefined') {
 		return true
 	} else if (Array.isArray(obj)) {
@@ -28,7 +25,7 @@ export function safeStorageData<T>(key: string, defaultValue: T): T {
 		return defaultValue
 	} else {
 		try {
-			return JSON.parse(str) as T
+			return JSON.parse(str!) as T
 		} catch (e) {
 			return str as T
 		}
@@ -47,7 +44,8 @@ export function verifyEmail(email: string) {
  * 验证手机号码格式是否正确
  * */
 export function verifyPhoneNumber(phoneNumber: string) {
-	const regex = /^1(3([0-35-9]\\d|4[1-8])|4[14-9]\\d|5([0125689]\\d|7[1-79])|66\\d|7[2-35-8]\\d|8\\d{2}|9[13589]\\d)\\d{7}$/
+	const regex =
+		/^1(3([0-35-9]\\d|4[1-8])|4[14-9]\\d|5([0125689]\\d|7[1-79])|66\\d|7[2-35-8]\\d|8\\d{2}|9[13589]\\d)\\d{7}$/
 	return regex.test(phoneNumber)
 }
 
@@ -65,17 +63,17 @@ export function getExplorerInfo(): { type: string; version: number } {
 		// 若解析成功则开始解析版本号
 		console.error('未知的浏览器内核：' + explorer)
 	} else {
-		switch (explorerMatch[0]) {
+		switch (explorerMatch![0]) {
 			case 'Chrome':
 				explorerInfo = {
 					type: 'Chrome',
-					version: explorer.match(/Chrome\/(\d+)/)[1]
+					version: explorer.match(/Chrome\/(\d+)/)![1]
 				}
 				break
 			case 'Firefox':
 				explorerInfo = {
 					type: 'Firefox',
-					version: explorer.match(/Firefox\/(\d+)/)[1]
+					version: explorer.match(/Firefox\/(\d+)/)![1]
 				}
 				break
 			case 'Trident':
@@ -97,28 +95,29 @@ export function getExplorerInfo(): { type: string; version: number } {
 			case 'Version':
 				explorerInfo = {
 					type: 'Iphone',
-					version: explorer.match(/Version\/(\d+)/)[1]
+					version: explorer.match(/Version\/(\d+)/)![1]
 				}
 		}
-		explorerInfo.version = Number(explorerInfo.version) // 将版本信息转化成Number类型
+		explorerInfo!.version = Number(explorerInfo!.version) // 将版本信息转化成Number类型
 	}
-	return explorerInfo
+	return explorerInfo as { type: string; version: number }
 }
 
 /**
  * 打印DOM的属性，而非其结构
  * @param el
  */
-export function printDom(el) {
+export function printDom(el: any) {
 	const obj = {}
 	for (const prop in el) {
+		// @ts-ignore
 		obj[prop] = el[prop]
 	}
 	console.log(obj)
 }
 
 /*创建图片上传*/
-export function uploadImage(name) {
+export function uploadImage(name: any) {
 	return new Promise((resolve, reject) => {
 		const input = document.createElement('input')
 		input.setAttribute('type', 'file')
@@ -146,11 +145,11 @@ export function uploadImage(name) {
  * @param time  延迟时间，单位毫秒
  * @returns {Promise<void>}
  */
-export async function sleep(time?) {
+export async function sleep(time?: number) {
 	time = time || 1000
 	await execTimeout(time)
 
-	function execTimeout(time) {
+	function execTimeout(time: number) {
 		return new Promise(resolve => setTimeout(resolve, time))
 	}
 }

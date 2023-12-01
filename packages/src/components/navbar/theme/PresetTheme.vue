@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import { ElDivider } from 'element-plus'
-import { themeKey } from '../../index'
+import { layoutThemeDataKey } from '../../../config'
 import { LayoutThemeModel } from '../../../index'
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const themeData = inject(themeKey)!
+const themeData = inject(layoutThemeDataKey)!
 
 function setTheme(theme: LayoutThemeModel) {
 	if (props.isDark) {

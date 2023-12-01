@@ -1,7 +1,7 @@
 import { Component, Ref } from 'vue'
 
 /** 布局尺寸 */
-export type layoutSize = 'large' | 'default' | 'small'
+export type layoutSizeType = 'large' | 'default' | 'small'
 /** element-plus drawer位置 */
 export type drawerPositionType = 'rtl' | 'ltr' | 'ttb' | 'btt'
 
@@ -20,7 +20,7 @@ export interface LayoutConfig {
 	/** 导航栏左侧logo */
 	logo?: string
 	/** 初始化应用尺寸，默认default */
-	size?: layoutSize
+	size?: layoutSizeType
 	/** i18n国际化配置*/
 	i18n?: {
 		languages?: Array<LayoutLanguage>
@@ -98,8 +98,8 @@ export interface NavTabModel {
 
 /** Layout响应式数据 */
 export interface LayoutReactiveData {
-	/** 页面组件大小 */
-	size: layoutSize
+	/** 侧边栏展开状态下宽度 */
+	sidebarExpandWidth: number
 	/** 是否缩放sidebar */
 	isCollapse: boolean
 	/** 小屏下是否显示sidebar弹窗 */

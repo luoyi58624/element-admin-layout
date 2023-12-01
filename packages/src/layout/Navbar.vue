@@ -23,14 +23,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from 'vue'
+import { computed, inject, provide } from 'vue'
 import { isEmpty, deepenColor, isDark as isDarkColor } from '../utils'
-import { layoutKey, breakpointKey, themeKey, layoutConfigKey } from '../components'
+import { layoutDataKey, layoutBreakpointDataKey, layoutThemeDataKey, layoutConfigKey } from '../config'
 
 const layoutConfig = inject(layoutConfigKey)!
-const layoutData = inject(layoutKey)!
-const { currentTheme } = inject(themeKey)!
-const breakpointData = inject(breakpointKey)!
+const layoutData = inject(layoutDataKey)!
+const { currentTheme } = inject(layoutThemeDataKey)!
+const breakpointData = inject(layoutBreakpointDataKey)!
 const navbarHeight = inject('navbarHeight')!
 
 const navbarTextColor = computed(() =>
@@ -57,6 +57,8 @@ provide('navbarTextColor', navbarTextColor)
 	z-index: 100;
 	display: flex;
 	align-items: center;
+	transition-property: height, left;
+	transition-duration: 300ms;
 	box-shadow:
 		0 3px 3px -2px rgba(0, 0, 0, 0.2),
 		0 3px 4px 0 rgba(0, 0, 0, 0.14),

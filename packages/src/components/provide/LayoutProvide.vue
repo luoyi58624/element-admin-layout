@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { layoutConfigKey, StorageKey } from '../index'
+import { layoutConfigKey, StorageKey } from '../../config'
 import { safeStorageData } from '../../utils'
 
 const { locale } = useI18n()

@@ -16,10 +16,11 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
-import { themeKey } from '../components'
-import NestRouterView from './components/NestRouterView.vue'
 
-const { currentTheme } = inject(themeKey)!
+import NestRouterView from './components/NestRouterView.vue'
+import { layoutThemeDataKey } from '../config'
+
+const { currentTheme } = inject(layoutThemeDataKey)!
 const navbarHeight = inject('navbarHeight')!
 const sidebarWidth = inject('sidebarWidth')!
 </script>
@@ -27,6 +28,9 @@ const sidebarWidth = inject('sidebarWidth')!
 <style lang="scss">
 #admin-layout-section {
 	position: absolute;
+}
+
+html:not(.global-col-resize) #admin-layout-section {
 	transition-property: width, left;
 	transition-duration: 300ms;
 }

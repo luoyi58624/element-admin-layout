@@ -1,6 +1,16 @@
-import { App, UnwrapNestedRefs, InjectionKey } from 'vue'
-import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, ThemeReactiveData, drawerPositionType, LayoutLanguage } from '../types'
-import { StorageKey, darkThemes, lightThemes } from '../config'
+import { App, ref, reactive, computed, watch } from 'vue'
+import { useDark, useToggle } from '@vueuse/core'
+import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, drawerPositionType, LayoutLanguage } from '../types'
+import {
+	StorageKey,
+	darkThemes,
+	lightThemes,
+	layoutConfigKey,
+	layoutSizeKey,
+	layoutDataKey,
+	layoutThemeDataKey,
+	layoutBreakpointDataKey
+} from '../config'
 
 import Layout from '../layout/Layout.vue'
 import NestRouterView from '../layout/components/NestRouterView.vue'
@@ -16,21 +26,10 @@ import LayoutSetting from './navbar/LayoutSetting.vue'
 
 import 'uno.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import '../styles/index.scss'
 
 import { RouteRecordRaw } from 'vue-router'
 import { safeStorageData } from 'element-admin-layout-utils'
-
-/** 注入layoutConfig配置*/
-export const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
-
-/** 布局响应式数据 */
-export const layoutKey: InjectionKey<UnwrapNestedRefs<LayoutReactiveData>> = Symbol()
-
-/** 主题响应式数据 */
-export const themeKey: InjectionKey<ThemeReactiveData> = Symbol()
-
-/** 响应式断点数据 */
-export const breakpointKey: InjectionKey<UnwrapNestedRefs<BreakpointReactiveData>> = Symbol()
 
 /**
  * 创建Layout路由
@@ -79,9 +78,33 @@ export const installElementAdminLayout = {
 			darkTextColor: options?.darkTextColor ?? '#f8f9fa'
 		}
 
+		const layoutSize = ref(safeStorageData(StorageKey.layoutSize, layoutConfig.size!))
+
+		const defaultSidebarExpandWidth = computed(() => {
+			switch (layoutSize.value) {
+				case 'small':
+					return 200
+				case 'large':
+					return 280
+				default:
+					return 240
+			}
+		})
+
+		const navbarHeight = computed(() => {
+			switch (layoutSize.value) {
+				case 'small':
+					return 48
+				case 'large':
+					return 64
+				default:
+					return 56
+			}
+		})
+
 		const layoutData = reactive(
 			safeStorageData<LayoutReactiveData>(StorageKey.layoutData, {
-				size: layoutConfig.size!,
+				sidebarExpandWidth: defaultSidebarExpandWidth.value,
 				isCollapse: false,
 				showSidebarDarwer: false,
 				autoCloseMenu: false,
@@ -118,22 +141,15 @@ export const installElementAdminLayout = {
 			xl: false
 		})
 
-		const navbarHeight = computed(() => {
-			switch (layoutData.size) {
-				case 'small':
-					return 48
-				case 'default':
-					return 56
-				case 'large':
-					return 64
-			}
-		})
-
 		const sidebarWidth = computed(() => {
 			if (breakpointData.mobile) return 0
-			else return layoutData.isCollapse ? 64 : 240
+			else return layoutData.isCollapse ? 64 : layoutData.sidebarExpandWidth
 		})
 
+		watch(layoutSize, value => {
+			localStorage.setItem(StorageKey.layoutSize, value)
+			layoutData.sidebarExpandWidth = defaultSidebarExpandWidth.value
+		})
 		watch(layoutData, value => {
 			localStorage.setItem(StorageKey.layoutData, JSON.stringify(value))
 		})
@@ -145,13 +161,25 @@ export const installElementAdminLayout = {
 		})
 
 		app.provide(layoutConfigKey, layoutConfig)
-		app.provide(layoutKey, layoutData)
-		app.provide(themeKey, themeData)
-		app.provide(breakpointKey, breakpointData)
+		app.provide(layoutSizeKey, layoutSize)
+		app.provide(layoutDataKey, layoutData)
+		app.provide(layoutThemeDataKey, themeData)
+		app.provide(layoutBreakpointDataKey, breakpointData)
 		app.provide('navbarHeight', navbarHeight)
 		app.provide('sidebarWidth', sidebarWidth)
+		app.provide('defaultSidebarExpandWidth', defaultSidebarExpandWidth)
 	}
 }
 
 export { StorageKey }
-export { LayoutProvide, Icon, NestRouterView, SwitchFullScreen, SwitchDark, SwitchSize, SwitchLanguage, SwitchTheme, LayoutSetting }
+export {
+	LayoutProvide,
+	Icon,
+	NestRouterView,
+	SwitchFullScreen,
+	SwitchDark,
+	SwitchSize,
+	SwitchLanguage,
+	SwitchTheme,
+	LayoutSetting
+}

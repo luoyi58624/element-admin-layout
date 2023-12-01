@@ -56,9 +56,9 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import { ElDivider, ElColorPicker } from 'element-plus'
-import { themeKey } from '../../index'
+import { layoutThemeDataKey } from '../../../config'
 
-const { currentTheme } = inject(themeKey)!
+const { currentTheme } = inject(layoutThemeDataKey)!
 </script>
 
 <style scoped lang="scss"></style>

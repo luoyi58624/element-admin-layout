@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { ref, unref, computed, inject } from 'vue'
 import Ripple from '../ripper/Ripple.vue'
-import { themeKey } from '../index'
+import { layoutThemeDataKey } from '../../config'
 import { deepenColor } from '../../utils'
 
 interface Props {
@@ -29,7 +29,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emits = defineEmits(['click'])
-const { currentTheme } = inject(themeKey)!
+const { currentTheme } = inject(layoutThemeDataKey)!
 const navbarTextColor = inject<string>('navbarTextColor')!
 
 const ripperRef = ref()

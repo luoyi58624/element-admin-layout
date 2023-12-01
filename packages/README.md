@@ -51,7 +51,6 @@ import { LayoutProvide } from 'element-admin-layout'
 </template>
 
 <style></style>
-
 ```
 
 ### 4.src目录下新建router.ts
@@ -110,23 +109,36 @@ const i18n = createI18n({
 })
 
 export default i18n
-
 ```
 
 ### 6.新增views文件夹，并创建home.vue
 
 ```
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { LayoutProvide } from 'element-admin-layout'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+const elLocale = computed(() => {
+	if (locale.value === 'en') {
+		return en
+	} else {
+		return zhCn
+	}
+})
+</script>
 
 <template>
-	<div style="padding: 8px">
-		<h1>首页</h1>
-		<p>{{ $t('message.hello') }}</p>
-	</div>
+	<layout-provide>
+		<el-config-provider :locale="elLocale">
+			<RouterView />
+		</el-config-provider>
+	</layout-provide>
 </template>
 
 <style></style>
-
 ```
 
 ## 自定义配置

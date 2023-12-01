@@ -7,16 +7,21 @@
 			top: navbarHeight + 'px',
 			backgroundColor: currentTheme.layout.sidebar
 		}">
-		<MenuWrapper />
+		<menu-wrapper />
+		<sidebar-resize v-if="!breakpointData.mobile && !layoutData.isCollapse" />
 	</aside>
 </template>
 
 <script setup lang="ts">
 import { inject } from 'vue'
-import { themeKey } from '../components'
+import { layoutBreakpointDataKey, layoutDataKey, layoutThemeDataKey } from '../config'
 import MenuWrapper from './components/MenuWrapper.vue'
 
-const { currentTheme } = inject(themeKey)!
+import SidebarResize from './components/SidebarResize.vue'
+
+const { currentTheme } = inject(layoutThemeDataKey)!
+const layoutData = inject(layoutDataKey)
+const breakpointData = inject(layoutBreakpointDataKey)
 const navbarHeight = inject('navbarHeight')!
 const sidebarWidth = inject('sidebarWidth')!
 </script>
@@ -26,6 +31,19 @@ const sidebarWidth = inject('sidebarWidth')!
 	position: absolute;
 	left: 0;
 	user-select: none;
+}
+
+html:not(.global-col-resize) #admin-layout-sidebar {
 	transition: all 0.3s;
+}
+
+.sidebar-col-resize {
+	position: absolute;
+	top: 0;
+	right: -4px;
+	width: 6px;
+	height: 100%;
+	cursor: col-resize !important;
+	z-index: 100000;
 }
 </style>
