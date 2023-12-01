@@ -96,6 +96,17 @@ export const installElementAdminLayout = {
 			}
 		})
 
+		const navTabHeight = computed(() => {
+			switch (layoutSize.value) {
+				case 'small':
+					return 28
+				case 'large':
+					return 36
+				default:
+					return 32
+			}
+		})
+
 		const layoutData = reactive(
 			safeStorageData<LayoutReactiveData>(StorageKey.layoutData, {
 				sidebarExpandWidth: defaultSidebarExpandWidth.value,
@@ -161,6 +172,7 @@ export const installElementAdminLayout = {
 		app.provide(layoutBreakpointDataKey, breakpointData)
 		app.provide('navbarHeight', navbarHeight)
 		app.provide('sidebarWidth', sidebarWidth)
+		app.provide('navTabHeight', navTabHeight)
 		app.provide('defaultSidebarExpandWidth', defaultSidebarExpandWidth)
 	}
 }

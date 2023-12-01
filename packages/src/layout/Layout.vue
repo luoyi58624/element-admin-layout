@@ -2,12 +2,14 @@
 import Navbar from './Navbar.vue'
 import Sidebar from './Sidebar.vue'
 import Section from './Section.vue'
+import NavTab from './NavTab.vue'
 </script>
 
 <template>
 	<div id="admin-layout-wrapper">
 		<Navbar />
 		<Sidebar />
+		<NavTab />
 		<Section />
 	</div>
 </template>
@@ -22,18 +24,23 @@ import Section from './Section.vue'
 h1 {
 	@apply text-2xl font-bold text-dark-2 dark:text-light-5;
 }
+
 h2 {
 	@apply text-xl font-bold text-dark-2 dark:text-light-5;
 }
+
 h3 {
 	@apply text-lg font-bold text-dark-2 dark:text-light-5;
 }
+
 h4 {
 	@apply text-base font-bold text-dark-2 dark:text-light-5;
 }
+
 h5 {
 	@apply text-sm font-bold text-dark-2 dark:text-light-5;
 }
+
 h6 {
 	@apply text-xs font-bold text-dark-2 dark:text-light-5;
 }

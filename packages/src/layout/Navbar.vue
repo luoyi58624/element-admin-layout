@@ -79,14 +79,11 @@ provide('navbarTextColor', navbarTextColor)
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 100;
+	z-index: 3;
 	display: flex;
 	align-items: center;
 	transition-property: height, left;
-	transition-duration: 300ms;
-	box-shadow:
-		0 3px 3px -2px rgba(0, 0, 0, 0.2),
-		0 3px 4px 0 rgba(0, 0, 0, 0.14),
-		0 1px 8px 0 rgba(0, 0, 0, 0.12);
+	transition-duration: var(--layout-transition-duration);
+	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.12);
 }
 </style>

@@ -31,9 +31,13 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.0.2",
-    "screenfull": "^6.0.2"
+    "screenfull": "^6.0.2",
+    "lodash-es": "^4.17.21",
+    "sortablejs": "^1.15.1"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "@types/sortablejs": "^1.15.7",
     "unplugin-element-plus": "^0.8.0",
     "vite-plugin-dts": "^3.6.3"
   }

@@ -1,3 +1,25 @@
+:root {
+  --layout-transition-duration: 400ms;
+}
+
 .global-col-resize * {
   cursor: col-resize !important;
+}
+
+.scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; // 针对ie浏览器
+  scrollbar-width: none; // 针对火狐浏览器
+}
+
+.nav-tab-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; // 针对ie浏览器
+  scrollbar-width: none; // 针对火狐浏览器
 }

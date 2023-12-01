@@ -30,15 +30,17 @@ const sidebarWidth = inject('sidebarWidth')!
 #admin-layout-sidebar {
 	position: absolute;
 	left: 0;
+	z-index: 0;
 	user-select: none;
 }
 
 html:not(.global-col-resize) #admin-layout-sidebar {
-	transition: all 0.3s;
+	transition: all var(--layout-transition-duration);
 }
 
 .sidebar-col-resize {
 	position: absolute;
+
 	top: 0;
 	right: -4px;
 	width: 6px;
