@@ -1,7 +1,13 @@
 <template>
 	<div
 		class="header-icon-wrapper"
-		:style="{ fontSize: size + 'px', color: navbarTextColor }"
+		:style="{
+			width: iconWidth + 'px',
+			height: iconWidth + 'px',
+			fontSize: iconSize + 'px',
+			color: navbarTextColor,
+			margin: `0px ${iconMargin}px`
+		}"
 		@click="emits('click', $event)"
 		@mousedown="addRipper"
 		@mouseup="removeRipper"
@@ -14,7 +20,7 @@
 <script setup lang="ts">
 import { ref, unref, computed, inject } from 'vue'
 import Ripple from '../ripper/Ripple.vue'
-import { layoutThemeDataKey } from '../../config'
+import { layoutSizeKey, layoutThemeDataKey } from '../../config'
 import { deepenColor } from '../../utils'
 
 interface Props {
@@ -23,16 +29,50 @@ interface Props {
 	tooltip?: string
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
 	size: 20,
 	tooltip: ''
 })
 
 const emits = defineEmits(['click'])
-const { currentTheme } = inject(layoutThemeDataKey)!
+const layoutSize = inject(layoutSizeKey)
+const { currentTheme } = inject(layoutThemeDataKey)
 const navbarTextColor = inject<string>('navbarTextColor')!
 
 const ripperRef = ref()
+
+const iconSize = computed(() => {
+	switch (layoutSize.value) {
+		case 'small':
+			return props.size - 4
+		case 'large':
+			return props.size + 2
+		default:
+			return props.size
+	}
+})
+
+const iconWidth = computed(() => {
+	switch (layoutSize.value) {
+		case 'small':
+			return 36
+		case 'large':
+			return 48
+		default:
+			return 44
+	}
+})
+
+const iconMargin = computed(() => {
+	switch (layoutSize.value) {
+		case 'small':
+			return 0
+		case 'large':
+			return 2
+		default:
+			return 1
+	}
+})
 
 const hoverColor = computed(() => {
 	return deepenColor(currentTheme.value.layout.navbar, 10)
@@ -50,8 +90,6 @@ function removeRipper() {
 <style scoped lang="scss">
 .header-icon-wrapper {
 	position: relative;
-	width: 48px;
-	height: 48px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -6,15 +6,17 @@
 			backgroundColor: currentTheme.layout.navbar
 		}">
 		<div v-if="!isEmpty(layoutConfig.logo)" class="w-64px flex-center cursor-pointer" @click="toggleSidebar">
-			<img :src="layoutConfig.logo" alt="" width="36" />
+			<img :src="layoutConfig.logo" alt="" :width="logoSize" />
 		</div>
-		<h3
+		<span
 			:style="{
+				fontSize: titleSize + 'px',
+				fontWeight: 'bold',
 				color: deepenColor(navbarTextColor, 15, true),
 				marginLeft: !isEmpty(layoutConfig.logo) ? '4px' : '16px'
 			}">
 			{{ layoutConfig.title }}
-		</h3>
+		</span>
 		<div class="flex-grow" />
 		<div class="flex items-center pr-4">
 			<Component v-for="component in layoutConfig.navbarComponents" :is="component" />
@@ -25,9 +27,10 @@
 <script setup lang="ts">
 import { computed, inject, provide } from 'vue'
 import { isEmpty, deepenColor, isDark as isDarkColor } from '../utils'
-import { layoutDataKey, layoutBreakpointDataKey, layoutThemeDataKey, layoutConfigKey } from '../config'
+import { layoutDataKey, layoutBreakpointDataKey, layoutThemeDataKey, layoutConfigKey, layoutSizeKey } from '../config'
 
 const layoutConfig = inject(layoutConfigKey)!
+const layoutSize = inject(layoutSizeKey)!
 const layoutData = inject(layoutDataKey)!
 const { currentTheme } = inject(layoutThemeDataKey)!
 const breakpointData = inject(layoutBreakpointDataKey)!
@@ -36,6 +39,28 @@ const navbarHeight = inject('navbarHeight')!
 const navbarTextColor = computed(() =>
 	isDarkColor(currentTheme.value.layout.navbar) ? layoutConfig.darkTextColor! : layoutConfig.lightTextColor!
 )
+
+const logoSize = computed(() => {
+	switch (layoutSize.value) {
+		case 'small':
+			return 32
+		case 'large':
+			return 40
+		default:
+			return 36
+	}
+})
+
+const titleSize = computed(() => {
+	switch (layoutSize.value) {
+		case 'small':
+			return 16
+		case 'large':
+			return 20
+		default:
+			return 18
+	}
+})
 
 function toggleSidebar() {
 	if (breakpointData.mobile) {

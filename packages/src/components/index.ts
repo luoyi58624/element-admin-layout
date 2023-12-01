@@ -1,16 +1,17 @@
 import { App, ref, reactive, computed, watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
-import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, drawerPositionType, LayoutLanguage } from '../types'
+import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, drawerPositionType } from '../types'
 import {
 	StorageKey,
-	darkThemes,
-	lightThemes,
+	layoutDarkThemes,
+	layoutLightThemes,
 	layoutConfigKey,
 	layoutSizeKey,
 	layoutDataKey,
 	layoutThemeDataKey,
 	layoutBreakpointDataKey
 } from '../config'
+import { layoutLanguage } from '../locale'
 
 import Layout from '../layout/Layout.vue'
 import NestRouterView from '../layout/components/NestRouterView.vue'
@@ -30,6 +31,7 @@ import '../styles/index.scss'
 
 import { RouteRecordRaw } from 'vue-router'
 import { safeStorageData } from 'element-admin-layout-utils'
+import { merge } from 'lodash-es'
 
 /**
  * 创建Layout路由
@@ -48,18 +50,6 @@ export function createLayoutRouter(routes: RouteRecordRaw[], layoutPath = '/', r
 	}
 }
 
-/// 默认的语言列表
-export const defaultLanguages: Array<LayoutLanguage> = [
-	{
-		label: '简体中文',
-		value: 'zh-cn'
-	},
-	{
-		label: 'English',
-		value: 'en'
-	}
-]
-
 /** 安装element-admin-layout插件 */
 export const installElementAdminLayout = {
 	install(app: App, options?: LayoutConfig) {
@@ -67,13 +57,17 @@ export const installElementAdminLayout = {
 			title: options?.title ?? '后台管理系统',
 			logo: options?.logo ?? undefined,
 			size: options?.size ?? 'default',
-			i18n: options?.i18n ?? {
-				languages: defaultLanguages
-			},
+			i18n: merge(
+				{
+					defaultLanguage: 'zh-cn',
+					languages: layoutLanguage
+				},
+				options?.i18n
+			),
 			navbarComponents: options?.navbarComponents ?? [],
 			themeMode: options?.themeMode ?? 'auto',
-			lightTheme: options?.lightTheme ?? lightThemes[0],
-			darkTheme: options?.darkTheme ?? darkThemes[0],
+			lightTheme: options?.lightTheme ?? layoutLightThemes[0],
+			darkTheme: options?.darkTheme ?? layoutDarkThemes[0],
 			lightTextColor: options?.lightTextColor ?? '#495057',
 			darkTextColor: options?.darkTextColor ?? '#f8f9fa'
 		}
@@ -83,18 +77,18 @@ export const installElementAdminLayout = {
 		const defaultSidebarExpandWidth = computed(() => {
 			switch (layoutSize.value) {
 				case 'small':
-					return 200
+					return 180
 				case 'large':
-					return 280
+					return 260
 				default:
-					return 240
+					return 220
 			}
 		})
 
 		const navbarHeight = computed(() => {
 			switch (layoutSize.value) {
 				case 'small':
-					return 48
+					return 44
 				case 'large':
 					return 64
 				default:

@@ -5,12 +5,24 @@ export type layoutSizeType = 'large' | 'default' | 'small'
 /** element-plus drawer位置 */
 export type drawerPositionType = 'rtl' | 'ltr' | 'ttb' | 'btt'
 
-/** 支持的语言列表 */
-export interface LayoutLanguage {
-	/** 下拉选项标签名字 */
+export interface LabelValue {
 	label: string
-	/** 切换的语言，对应i18n中locale属性 */
 	value: string
+}
+
+/** 支持的语言 */
+export interface LayoutLanguage {
+	'zh-cn': LayoutLanguageItem
+	en: LayoutLanguageItem
+}
+
+export interface LayoutLanguageItem {
+	/** 下拉菜单标题 */
+	label: string
+	/** 语言配置 */
+	messages: {
+		element_admin_layout_language: Object
+	}
 }
 
 /** Layout配置 */
@@ -23,7 +35,8 @@ export interface LayoutConfig {
 	size?: layoutSizeType
 	/** i18n国际化配置*/
 	i18n?: {
-		languages?: Array<LayoutLanguage>
+		/** 自定义下拉菜单支持切换的语言列表，注意：你无法对其进行扩展，如果需要支持更多类型的语言只能提交pr */
+		languages?: LayoutLanguage
 	}
 	/** 导航头组件 */
 	navbarComponents?: Array<Component>

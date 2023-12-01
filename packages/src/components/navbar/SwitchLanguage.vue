@@ -1,14 +1,14 @@
 <template>
 	<el-dropdown trigger="hover" @command="switchLanguage">
-		<header-icon icon="i-mdi-translate" />
+		<navbar-icon icon="i-mdi-translate" />
 		<template #dropdown>
 			<el-dropdown-menu>
-				<el-dropdown-item v-for="language in layoutConfigData.i18n?.languages" :command="language.value">
+				<el-dropdown-item v-for="language in languages" :command="language">
 					<span
 						:style="{
-							color: language.value == locale ? themeData.currentTheme.value.element.primary : null
+							color: language == locale ? themeData.currentTheme.value.element.primary : null
 						}">
-						{{ language.label }}
+						{{ layoutConfigData.i18n!.languages![language].label }}
 					</span>
 				</el-dropdown-item>
 			</el-dropdown-menu>
@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-import HeaderIcon from './HeaderIcon.vue'
+import NavbarIcon from './NavbarIcon.vue'
 import { useI18n } from 'vue-i18n'
 import { inject } from 'vue'
 import { layoutConfigKey, StorageKey, layoutThemeDataKey } from '../../config'
@@ -31,6 +31,8 @@ function switchLanguage(command) {
 	locale.value = command
 	localStorage.setItem(StorageKey.language, command)
 }
+
+const languages = Object.keys(layoutConfigData.i18n?.languages)
 </script>
 
 <style scoped lang="scss"></style>

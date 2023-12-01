@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<HeaderIcon icon="i-icon-park-outline-theme" @click="showThemePanel = true" />
+		<NavbarIcon icon="i-icon-park-outline-theme" @click="showThemePanel = true" />
 		<ElDrawer
 			title="主题设置"
 			modal-class="bg-transparent"
@@ -10,8 +10,8 @@
 			v-model="showThemePanel">
 			<ElScrollbar>
 				<div class="w-full p-4">
-					<PresetTheme title="亮色主题" :is-dark="false" :themes="lightThemes" />
-					<PresetTheme title="暗色主题" :is-dark="true" :themes="darkThemes" />
+					<PresetTheme title="亮色主题" :is-dark="false" :themes="layoutLightThemes" />
+					<PresetTheme title="暗色主题" :is-dark="true" :themes="layoutDarkThemes" />
 					<CustomTheme />
 					<button
 						class="w-full mt-4 py-2 outline-none border-none cursor-pointer rounded-full bg-light-8 dark:bg-dark-1"
@@ -26,9 +26,9 @@
 
 <script setup lang="ts">
 import { ref, inject } from 'vue'
-import { StorageKey, darkThemes, lightThemes, layoutDataKey, layoutThemeDataKey } from '../../../config'
+import { StorageKey, layoutDarkThemes, layoutLightThemes, layoutDataKey, layoutThemeDataKey } from '../../../config'
 import { ElDrawer, ElScrollbar } from 'element-plus'
-import HeaderIcon from '../HeaderIcon.vue'
+import NavbarIcon from '../NavbarIcon.vue'
 import PresetTheme from './PresetTheme.vue'
 import CustomTheme from './CustomTheme.vue'
 
@@ -41,12 +41,12 @@ function resetTheme() {
 	localStorage.removeItem(StorageKey.darkTheme)
 	isDark.value = false
 	lightTheme.value = {
-		layout: Object.assign({}, lightThemes[0].layout),
-		element: Object.assign({}, lightThemes[0].element)
+		layout: Object.assign({}, layoutLightThemes[0].layout),
+		element: Object.assign({}, layoutLightThemes[0].element)
 	}
 	darkTheme.value = {
-		layout: Object.assign({}, darkThemes[0].layout),
-		element: Object.assign({}, darkThemes[0].element)
+		layout: Object.assign({}, layoutDarkThemes[0].layout),
+		element: Object.assign({}, layoutDarkThemes[0].element)
 	}
 }
 </script>

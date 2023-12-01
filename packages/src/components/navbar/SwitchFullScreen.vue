@@ -1,12 +1,12 @@
 <template>
-	<header-icon :icon="isFullscreen ? 'i-mdi-fullscreen-exit' : 'i-mdi-fullscreen'" :size="22" @click="toggleScreen" />
+	<navbar-icon :icon="isFullscreen ? 'i-mdi-fullscreen-exit' : 'i-mdi-fullscreen'" :size="22" @click="toggleScreen" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { showMessage } from '../../utils'
 import screenfull from 'screenfull'
-import HeaderIcon from './HeaderIcon.vue'
+import NavbarIcon from './NavbarIcon.vue'
 
 const isFullscreen = ref(false)
 

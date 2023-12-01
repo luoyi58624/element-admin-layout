@@ -83,29 +83,13 @@ export default router
 
 ```
 import { createI18n } from 'vue-i18n'
-import { layoutLanguage_zhCn, layoutLanguage_en } from 'element-admin-layout'
-
-const messages = {
-	'zh-cn': {
-		...layoutLanguage_zhCn,
-		message: {
-			hello: '你好，世界'
-		}
-	},
-	en: {
-		...layoutLanguage_en,
-		message: {
-			hello: 'hello world'
-		}
-	}
-}
 
 const i18n = createI18n({
 	legacy: false,
 	allowComposition: true,
 	locale: 'zh-cn',
 	fallbackLocale: 'zh-cn',
-	messages: messages
+	messages: {}
 })
 
 export default i18n
@@ -116,25 +100,11 @@ export default i18n
 ```
 <script setup lang="ts">
 import { LayoutProvide } from 'element-admin-layout'
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import en from 'element-plus/dist/locale/en.mjs'
-import { useI18n } from 'vue-i18n'
-
-const { locale } = useI18n()
-const elLocale = computed(() => {
-	if (locale.value === 'en') {
-		return en
-	} else {
-		return zhCn
-	}
-})
 </script>
 
 <template>
 	<layout-provide>
-		<el-config-provider :locale="elLocale">
-			<RouterView />
-		</el-config-provider>
+		<RouterView />
 	</layout-provide>
 </template>
 
