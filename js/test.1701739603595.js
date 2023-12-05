@@ -1,0 +1,1 @@
+import{_ as e}from"./App.1701739603595.js";import{h as t,f as o,j as s}from"./vendors/vue.1701739603595.js";import"./vendors/element-plus.1701739603595.js";const c={},r=s("h1",null,"测试",-1),n=[r];function _(a,f){return o(),t("div",null,n)}const m=e(c,[["render",_]]);export{m as default};
