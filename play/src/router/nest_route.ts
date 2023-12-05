@@ -6,7 +6,8 @@ export const nestRoute: RouteRecordRaw = {
 	name: 'Nest',
 	component: NestRouterView,
 	meta: {
-		title: '嵌套菜单'
+		title: 'menu.nestMenu',
+		i18n: true
 	},
 	children: [
 		{
@@ -57,6 +58,9 @@ export const nestRoute: RouteRecordRaw = {
 						{
 							path: 'three2',
 							name: 'Three2',
+							meta: {
+								title: '3级嵌套路由2'
+							},
 							component: () => import('../views/nest/two/three/three_2.vue')
 						},
 						{

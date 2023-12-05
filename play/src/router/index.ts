@@ -11,8 +11,9 @@ const router = createRouter({
 				path: '',
 				name: 'Home',
 				meta: {
-					title: '首页',
-					icon: 'mdi:home'
+					title: 'menu.home',
+					icon: 'mdi:home',
+					i18n: true
 				},
 				component: Home
 			},
@@ -20,8 +21,9 @@ const router = createRouter({
 				path: 'test',
 				name: 'Test',
 				meta: {
-					title: '测试',
-					icon: 'mdi:folder'
+					title: 'menu.test',
+					icon: 'mdi:folder',
+					i18n: true
 				},
 				component: () => import('../views/test.vue')
 			},

@@ -12,7 +12,7 @@ import { merge } from 'lodash-es'
 const i18n = useI18n()
 const layoutSize = inject(layoutSizeKey)
 const layoutConfig = inject(layoutConfigKey)
-i18n.locale.value = safeStorageData(StorageKey.language, layoutConfig.i18n!.defaultLanguage)
+i18n.locale.value = safeStorageData(StorageKey.language, i18n.locale.value)
 
 Object.keys(layoutConfig.i18n?.languages).forEach(e => {
 	i18n.setLocaleMessage(

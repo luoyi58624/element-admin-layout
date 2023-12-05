@@ -68,6 +68,10 @@ export interface LayoutThemeModel {
 		section: string
 		/** 侧边栏文字激活颜色 */
 		sidebarActiveText: string
+		/** 导航标签背景色 */
+		navTab: string
+		/** 导航标签激活背景色 */
+		navTabActive: string
 	}
 	/** element-plus 主题 */
 	element: {
@@ -83,6 +87,8 @@ export interface LayoutThemeModel {
 export interface LayoutMenuModel {
 	/** 菜单标题 */
 	title: string
+	/** 菜单是否是i18n字符串 */
+	i18n: boolean
 	/** 跳转路径 */
 	path: string
 	/** 菜单icon */
@@ -97,6 +103,8 @@ export interface LayoutRouteMeta {
 	title?: string
 	/** 路由菜单图标 */
 	icon?: string
+	/** title是否国际化 */
+	i18n?: boolean
 }
 
 /** 渲染TagView的路由标签接口 */
@@ -107,6 +115,8 @@ export interface NavTabModel {
 	path: string
 	/** 标签icon */
 	icon: string
+	/** title是否国际化 */
+	i18n?: boolean
 }
 
 /** Layout响应式数据 */

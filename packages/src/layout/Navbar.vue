@@ -84,6 +84,12 @@ provide('navbarTextColor', navbarTextColor)
 	align-items: center;
 	transition-property: height, left;
 	transition-duration: var(--layout-transition-duration);
-	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+.dark {
+	#admin-layout-header {
+		box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.6);
+	}
 }
 </style>

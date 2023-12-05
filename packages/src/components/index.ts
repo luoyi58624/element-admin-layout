@@ -1,6 +1,6 @@
 import { App, ref, reactive, computed, watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
-import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, drawerPositionType } from '../types'
+import { BreakpointReactiveData, LayoutConfig, LayoutReactiveData, drawerPositionType, LayoutMenuModel } from '../types'
 import {
 	StorageKey,
 	layoutDarkThemes,
@@ -9,7 +9,8 @@ import {
 	layoutSizeKey,
 	layoutDataKey,
 	layoutThemeDataKey,
-	layoutBreakpointDataKey
+	layoutBreakpointDataKey,
+	layoutMenusKey
 } from '../config'
 import { layoutLanguage } from '../locale'
 
@@ -101,9 +102,20 @@ export const installElementAdminLayout = {
 				case 'small':
 					return 28
 				case 'large':
-					return 36
+					return 40
 				default:
 					return 32
+			}
+		})
+
+		const fontSize = computed(() => {
+			switch (layoutSize.value) {
+				case 'small':
+					return 12
+				case 'large':
+					return 16
+				default:
+					return 14
 			}
 		})
 
@@ -151,6 +163,8 @@ export const installElementAdminLayout = {
 			else return layoutData.isCollapse ? 64 : layoutData.sidebarExpandWidth
 		})
 
+		const layoutMenus = ref<LayoutMenuModel[]>([])
+
 		watch(layoutSize, value => {
 			localStorage.setItem(StorageKey.layoutSize, value)
 			layoutData.sidebarExpandWidth = defaultSidebarExpandWidth.value
@@ -168,11 +182,13 @@ export const installElementAdminLayout = {
 		app.provide(layoutConfigKey, layoutConfig)
 		app.provide(layoutSizeKey, layoutSize)
 		app.provide(layoutDataKey, layoutData)
+		app.provide(layoutMenusKey, layoutMenus)
 		app.provide(layoutThemeDataKey, themeData)
 		app.provide(layoutBreakpointDataKey, breakpointData)
 		app.provide('navbarHeight', navbarHeight)
 		app.provide('sidebarWidth', sidebarWidth)
 		app.provide('navTabHeight', navTabHeight)
+		app.provide('layoutFontSize', fontSize)
 		app.provide('defaultSidebarExpandWidth', defaultSidebarExpandWidth)
 	}
 }

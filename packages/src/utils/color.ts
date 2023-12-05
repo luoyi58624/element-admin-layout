@@ -3,19 +3,19 @@ import { TinyColor } from '@ctrl/tinycolor'
 /**
  * 将颜色与白色进行混合，获取更亮的颜色
  * @param color  颜色
- * @param num    比例：1-100
+ * @param scale  比例：1-100
  */
-export function lighten(color: string, num: number) {
-  return new TinyColor(color).mix('#fff', num).toHexString()
+export function lighten(color: string, scale: number) {
+	return new TinyColor(color).mix('#fff', scale).toHexString()
 }
 
 /**
  * 将颜色与黑色进行混合，获取更暗的颜色
  * @param color  颜色
- * @param num    比例：1-100
+ * @param scale  比例：1-100
  */
-export function darken(color: string, num: number) {
-  return new TinyColor(color).mix('#000', num).toHexString()
+export function darken(color: string, scale: number) {
+	return new TinyColor(color).mix('#000', scale).toHexString()
 }
 
 /**
@@ -23,7 +23,7 @@ export function darken(color: string, num: number) {
  * @param color
  */
 export function isDark(color) {
-  return new TinyColor(color).getBrightness() < 165
+	return new TinyColor(color).getBrightness() < 165
 }
 
 /**
@@ -34,9 +34,9 @@ export function isDark(color) {
  * @returns
  */
 export function deepenColor(color: string, scale: number, reversal?: boolean): string {
-  if (reversal == true) {
-    return isDark(color) ? darken(color, scale) : lighten(color, scale)
-  } else {
-    return isDark(color) ? lighten(color, scale) : darken(color, scale)
-  }
+	if (reversal == true) {
+		return isDark(color) ? darken(color, scale) : lighten(color, scale)
+	} else {
+		return isDark(color) ? lighten(color, scale) : darken(color, scale)
+	}
 }

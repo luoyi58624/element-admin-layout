@@ -8,19 +8,24 @@
 			:uniqueOpened="false"
 			:collapseTransition="false"
 			:collapse="!breakpointData.mobile && layoutData.isCollapse">
-			<menu-item v-for="menu in menus" :menu="menu" />
+			<menu-item v-for="menu in layoutMenus" :menu="menu" />
 		</el-menu>
 	</el-scrollbar>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, inject } from 'vue'
+import { computed, inject } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
-import { layoutBreakpointDataKey, layoutConfigKey, layoutDataKey, layoutThemeDataKey } from '../../config'
+import {
+	layoutBreakpointDataKey,
+	layoutConfigKey,
+	layoutDataKey,
+	layoutMenusKey,
+	layoutThemeDataKey
+} from '../../config'
 import { routeToMenu, isDark as isDarkColor } from '../../utils'
-import { LayoutMenuModel } from '../../types'
 
 const router = useRouter()
 const route = useRoute()
@@ -29,8 +34,7 @@ const layoutConfig = inject(layoutConfigKey)!
 const layoutData = inject(layoutDataKey)!
 const breakpointData = inject(layoutBreakpointDataKey)!
 const { currentTheme } = inject(layoutThemeDataKey)!
-
-const menus = ref<LayoutMenuModel[]>([])
+const layoutMenus = inject(layoutMenusKey)!
 
 const sliderTextColor = computed(() =>
 	isDarkColor(currentTheme.value.layout.sidebar) ? layoutConfig.darkTextColor : layoutConfig.lightTextColor
@@ -38,7 +42,7 @@ const sliderTextColor = computed(() =>
 
 const layoutRoutes = router.getRoutes().filter(item => item.name === 'Layout')
 if (layoutRoutes.length > 0) {
-	menus.value = routeToMenu(layoutRoutes[0].children, layoutRoutes[0].path)
+	layoutMenus.value = routeToMenu(layoutRoutes[0].children, layoutRoutes[0].path)
 	nextTick(() => {
 		setTimeout(() => {
 			const doms = document.getElementsByClassName('el-menu-item is-active')

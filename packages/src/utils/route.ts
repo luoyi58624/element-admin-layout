@@ -26,7 +26,8 @@ export function routeToMenu(routes: Array<RouteRecordRaw>, parentPath?: string):
 		const menu: LayoutMenuModel = {
 			title: route.meta?.title ?? route.name?.toString() ?? '',
 			path: path,
-			icon: route.meta?.icon ?? ''
+			icon: route.meta?.icon ?? '',
+			i18n: route.meta?.i18n ?? false
 		}
 		if (!isEmpty(route.children) && route.children!.length > 0) {
 			menu.children = routeToMenu(route.children!, menu.path)

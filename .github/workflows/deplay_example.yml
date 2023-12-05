@@ -18,7 +18,7 @@ jobs:
           version: 8
       - run: |
           pnpm i --no-frozen-lockfile
-          pnpm run build:example
+          pnpm run build:play
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
