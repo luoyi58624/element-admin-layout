@@ -8,7 +8,7 @@ import ElementPlus from 'unplugin-element-plus/vite'
 import vueJsxPlugin from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
-	base: '/element-admin-layout/',
+	// base: '/element-admin-layout/',
 	plugins: [
 		vue(),
 		vueJsxPlugin(),
@@ -25,7 +25,7 @@ export default defineConfig({
 			directoryAsNamespace: false,
 			dirs: ['src/components']
 		}),
-		ElementPlus()
+		ElementPlus({})
 	],
 	server: {
 		port: 7989
