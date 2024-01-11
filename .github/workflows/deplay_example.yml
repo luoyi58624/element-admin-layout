@@ -1,4 +1,7 @@
-name: 更新缓存
+name: 部署示例页面
+
+permissions:
+  contents: write
 
 on:
   push:
@@ -36,3 +39,13 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm run build:play
+
+      - name: Deploy page
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: example_pages
+          folder: play/dist
+          clean: true
