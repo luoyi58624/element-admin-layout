@@ -19,6 +19,11 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -31,10 +36,6 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-  
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - run: |
           pnpm i --no-frozen-lockfile
