@@ -1,16 +1,14 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import dts from 'vite-plugin-dts'
-import Unocss from 'unocss/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
 	plugins: [
 		vue(),
-		Unocss({
-			configFile: '../unocss.config.ts'
-		}),
+		vueJsx(),
 		ElementPlus(),
 		dts({
 			outDir: 'dist'

@@ -21,30 +21,6 @@ import NavTab from './NavTab.vue'
 	box-sizing: border-box;
 }
 
-h1 {
-	@apply text-2xl font-bold text-dark-2 dark:text-light-5;
-}
-
-h2 {
-	@apply text-xl font-bold text-dark-2 dark:text-light-5;
-}
-
-h3 {
-	@apply text-lg font-bold text-dark-2 dark:text-light-5;
-}
-
-h4 {
-	@apply text-base font-bold text-dark-2 dark:text-light-5;
-}
-
-h5 {
-	@apply text-sm font-bold text-dark-2 dark:text-light-5;
-}
-
-h6 {
-	@apply text-xs font-bold text-dark-2 dark:text-light-5;
-}
-
 #admin-layout-wrapper {
 	width: 100vw;
 	height: 100vh;
@@ -54,7 +30,8 @@ h6 {
 	overflow: hidden;
 
 	.el-drawer__title {
-		@apply font-bold text-lg text-dark-2 dark:text-light-5;
+		font-weight: bold;
+		font-size: 18px;
 	}
 
 	/* 全屏 dialog 固定 body 高度，防止被内容撑开 */

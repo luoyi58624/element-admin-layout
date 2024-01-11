@@ -1,6 +1,7 @@
 <template>
-	<el-icon :size="size">
-		<div v-if="icon.startsWith('i-')" :class="icon"></div>
+	<el-icon :size="size" :color="color">
+		<component v-if="isObject" :is="icon"></component>
+		<div v-else-if="icon.startsWith('i-')" :class="icon"></div>
 		<IconWrapper v-else-if="icon.indexOf(':') !== -1" :icon="icon"></IconWrapper>
 		<component v-else :is="icon"></component>
 	</el-icon>
@@ -9,8 +10,9 @@
 <script setup lang="ts">
 import { ElIcon } from 'element-plus'
 import { Icon as IconWrapper } from '@iconify/vue'
+import { computed } from 'vue'
 
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		/**
 		 * 支持三种类型图标，静态图标、动态图标、组件图标。
@@ -25,11 +27,15 @@ withDefaults(
 
 		/** 图标尺寸 */
 		size?: number
+
+		color?: string
 	}>(),
 	{
 		size: 20
 	}
 )
+
+const isObject = computed(() => Object.prototype.toString.call(props.icon) === '[object Object]')
 </script>
 
 <style scoped lang="scss"></style>

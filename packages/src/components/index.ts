@@ -26,7 +26,6 @@ import SwitchLanguage from './navbar/SwitchLanguage.vue'
 import SwitchTheme from './navbar/theme/SwitchTheme.vue'
 import LayoutSetting from './navbar/LayoutSetting.vue'
 
-import 'uno.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '../styles/index.scss'
 

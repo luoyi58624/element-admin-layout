@@ -8,9 +8,7 @@
 			top: navbarHeight + navTabHeight + 'px',
 			backgroundColor: currentTheme.layout.section
 		}">
-		<div class="w-full h-full overflow-hidden overflow-y-auto">
-			<NestRouterView />
-		</div>
+		<NestRouterView />
 	</div>
 </template>
 
@@ -30,6 +28,8 @@ const navTabHeight = inject('navTabHeight')!
 #admin-layout-section {
 	position: absolute;
 	z-index: 0;
+	overflow: hidden;
+	overflow-y: auto;
 }
 
 html:not(.global-col-resize) #admin-layout-section {

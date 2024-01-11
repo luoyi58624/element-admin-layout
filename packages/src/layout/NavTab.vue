@@ -273,7 +273,7 @@ onUnmounted(() => {
 		}">
 		<div
 			ref="navTabRef"
-			class="w-full flex overflow-x-scroll overflow-y-hidden scrollbar-hide"
+			class="tab-scroll-container scrollbar-hide"
 			:style="{ height: navTabHeight + 'px' }"
 			@wheel="scrollHandler">
 			<div
@@ -335,9 +335,11 @@ onUnmounted(() => {
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 #admin-layout-nav-tab {
-	@apply absolute z-1 flex;
+	position: absolute;
+	z-index: 1;
+	display: flex;
 	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
 	background: v-bind(navTabBackground);
 }
@@ -347,8 +349,22 @@ html:not(.global-col-resize) #admin-layout-nav-tab {
 	transition-duration: var(--layout-transition-duration);
 }
 
+.tab-scroll-container {
+	width: 100%;
+	display: flex;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
 .tab-item {
-	@apply h-full px-2 inline-block cursor-pointer select-none relative flex-center transition-colors;
+	height: 100%;
+	padding: 0 8px;
+	cursor: pointer;
+	user-select: none;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: v-bind(fontSize);
 	background-color: v-bind(navTabBackground);
 	color: v-bind(navTabTextColor);
@@ -375,7 +391,11 @@ html:not(.global-col-resize) #admin-layout-nav-tab {
 	}
 
 	& > .close-icon {
-		@apply p-2px rounded-full flex-center;
+		padding: 2px;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
 		&:hover {
 			background-color: v-bind(navTabCloseHoverBackground);
@@ -384,7 +404,12 @@ html:not(.global-col-resize) #admin-layout-nav-tab {
 }
 
 .operate-item {
-	@apply h-full aspect-square flex-center cursor-pointer;
+	height: 100%;
+	aspect-ratio: 1/1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 	color: v-bind(navTabTextColor);
 
 	&:hover {

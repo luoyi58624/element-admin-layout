@@ -1,11 +1,11 @@
 <template>
 	<header
-		id="admin-layout-header"
+		id="admin-layout-navbar"
 		:style="{
 			height: navbarHeight + 'px',
 			backgroundColor: currentTheme.layout.navbar
 		}">
-		<div v-if="!isEmpty(layoutConfig.logo)" class="w-64px flex-center cursor-pointer" @click="toggleSidebar">
+		<div v-if="!isEmpty(layoutConfig.logo)" class="navbar-logo" @click="toggleSidebar">
 			<img :src="layoutConfig.logo" alt="" :width="logoSize" />
 		</div>
 		<span
@@ -17,8 +17,8 @@
 			}">
 			{{ layoutConfig.title }}
 		</span>
-		<div class="flex-grow" />
-		<div class="flex items-center pr-4">
+		<div style="flex-grow: 1" />
+		<div class="navbar-icons">
 			<Component v-for="component in layoutConfig.navbarComponents" :is="component" />
 		</div>
 	</header>
@@ -74,7 +74,7 @@ provide('navbarTextColor', navbarTextColor)
 </script>
 
 <style lang="scss">
-#admin-layout-header {
+#admin-layout-navbar {
 	width: 100%;
 	position: absolute;
 	top: 0;
@@ -85,10 +85,24 @@ provide('navbarTextColor', navbarTextColor)
 	transition-property: height, left;
 	transition-duration: var(--layout-transition-duration);
 	box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+
+	.navbar-logo {
+		width: 64px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.navbar-icons {
+		display: flex;
+		align-items: center;
+		padding-right: 16px;
+	}
 }
 
 .dark {
-	#admin-layout-header {
+	#admin-layout-navbar {
 		box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.6);
 	}
 }
