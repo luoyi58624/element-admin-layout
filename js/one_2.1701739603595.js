@@ -1,1 +1,0 @@
-import{_ as e}from"./App.1701739603595.js";import{f as o,h as t,j as c}from"./vendors/vue.1701739603595.js";import"./vendors/element-plus.1701739603595.js";const n={},r=c("h1",null,"一级路由-2",-1),s=[r];function _(a,f){return o(),t("div",null,s)}const m=e(n,[["render",_]]);export{m as default};
