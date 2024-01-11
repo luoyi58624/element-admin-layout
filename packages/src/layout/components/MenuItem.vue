@@ -31,7 +31,7 @@ const layoutFontSize = inject('layoutFontSize')!
 const layoutSize = inject(layoutSizeKey)
 
 const iconSize = computed(() => {
-	switch (layoutSize.value) {
+	switch (layoutSize!.value) {
 		case 'small':
 			return 20
 		case 'large':

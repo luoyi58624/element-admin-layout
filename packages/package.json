@@ -1,6 +1,6 @@
 {
   "name": "element-admin-layout",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": {
     "name": "luoyi",
     "email": "luoyi58624@gamil.com"
@@ -34,7 +34,7 @@
     "lodash-es": "^4.17.21",
     "screenfull": "^6.0.2",
     "sortablejs": "^1.15.1",
-    "vue-draggable-plus": "^0.3.0",
+    "vue-draggable-plus": "^0.3.4",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
@@ -42,6 +42,6 @@
     "@types/sortablejs": "^1.15.7",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "unplugin-element-plus": "^0.8.0",
-    "vite-plugin-dts": "^3.6.3"
+    "vite-plugin-dts": "^3.7.0"
   }
 }
