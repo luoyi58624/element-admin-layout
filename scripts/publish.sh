@@ -1,2 +1,2 @@
-cd ./packages
+cd ./packages || exit
 npm publish
