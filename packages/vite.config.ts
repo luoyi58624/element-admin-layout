@@ -9,7 +9,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		vueJsx(),
-		ElementPlus(),
+		ElementPlus({}),
 		dts({
 			outDir: 'dist'
 		})

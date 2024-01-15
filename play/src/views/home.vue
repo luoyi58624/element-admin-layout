@@ -13,6 +13,7 @@
 import { layoutThemeDataKey } from 'element-admin-layout-config'
 import i18n from '../i18n'
 import { Folder } from '@element-plus/icons-vue'
+import { inject, computed } from 'vue'
 
 const themeData = inject(layoutThemeDataKey)!
 const title = computed(() => i18n.global.t('menu.home'))

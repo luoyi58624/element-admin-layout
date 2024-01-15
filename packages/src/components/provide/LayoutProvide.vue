@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { layoutConfigKey, layoutSizeKey, StorageKey } from '../../config'
 import { safeStorageData } from '../../utils'

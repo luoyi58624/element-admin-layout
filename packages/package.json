@@ -24,10 +24,10 @@
     "update:dep": "ncu -u && pnpm update"
   },
   "peerDependencies": {
-    "element-plus": "^2.4.3",
-    "vue": "^3.3.9",
-    "vue-i18n": "^9",
-    "vue-router": "^4.2.5"
+    "element-plus": "^2.5.1",
+    "vue": "^3.4.8",
+    "vue-i18n": "^9.9.0",
+    "vue-router": "4.2.5"
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.0.2",

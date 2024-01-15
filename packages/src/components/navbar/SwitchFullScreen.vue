@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { showMessage } from '../../utils'
 import screenfull from 'screenfull'
 import NavbarIcon from './NavbarIcon.vue'

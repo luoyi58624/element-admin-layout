@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, inject } from 'vue'
+import { computed, nextTick, inject, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElScrollbar, ElMenu } from 'element-plus'
 import MenuItem from './MenuItem.vue'
