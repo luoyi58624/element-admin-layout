@@ -9,9 +9,10 @@ import { deepenColor, isDark, isEmpty } from '../utils'
 import { NavTabModel } from '../types'
 import { useEventListener } from '@vueuse/core'
 import { useDraggable } from 'vue-draggable-plus'
+import { throttle } from 'lodash-es'
 
-const layoutData = inject(layoutDataKey)
-const layoutSize = inject(layoutSizeKey)
+const layoutData = inject(layoutDataKey)!
+const layoutSize = inject(layoutSizeKey)!
 const { currentTheme } = inject(layoutThemeDataKey)!
 const navbarHeight = inject('navbarHeight')!
 const sidebarWidth = inject('sidebarWidth')!
@@ -51,44 +52,47 @@ const iconSize = computed(() => {
 	}
 })
 
-const scrollSize = 240 // 滚动距离
+const scrollSize = 200 // 滚动距离
 const scrollSpeed = 8 // 滚动速度
-let scrollAnimation // 滚动动画
+let scrollAnimation: any // 滚动动画
 let disableLeftScroll = false
 let disableRightScroll = false
+
+// const scrollThrottleFun = throttle(scrollHandler, 1000, {
+// 	leading: true,
+// 	trailing: true
+// })
 
 // 鼠标滚轮滚动事件处理
 function scrollHandler(e: WheelEvent) {
 	const scrollDom = getScrollDom()
 	let i = 0 // 判断是否停止
-	// 小于0（鼠标滚动向下滚）往右滚动，大于0（鼠标滚动向上滚）往左滚动
-	if (e.wheelDelta < 0) {
+	// 大于0（鼠标滚动向下滚）往右滚动，小于0（鼠标滚动向上滚）往左滚动
+	if (e.deltaY > 0) {
 		disableLeftScroll = false
 		if (!disableRightScroll) {
+			disableRightScroll = true
 			if (scrollAnimation) clearInterval(scrollAnimation)
 			scrollAnimation = setInterval(() => {
 				i -= scrollSpeed
 				if (i < -scrollSize) {
 					clearInterval(scrollAnimation)
-					if (scrollDom.scrollLeft + scrollDom.clientWidth >= scrollDom.scrollWidth) {
-						disableRightScroll = true
-					}
+					disableRightScroll = scrollDom.scrollLeft + scrollDom.clientWidth >= scrollDom.scrollWidth
 				} else {
 					scrollDom.scrollLeft += scrollSpeed
 				}
 			}, 1)
 		}
-	} else if (e.wheelDelta > 0) {
+	} else if (e.deltaY < 0) {
 		disableRightScroll = false
 		if (!disableLeftScroll) {
+			disableLeftScroll = true
 			if (scrollAnimation) clearInterval(scrollAnimation)
 			scrollAnimation = setInterval(() => {
 				i += scrollSpeed
 				if (i > scrollSize) {
 					clearInterval(scrollAnimation)
-					if (scrollDom.scrollLeft <= 0) {
-						disableLeftScroll = true
-					}
+					disableLeftScroll = scrollDom.scrollLeft <= 0
 				} else {
 					scrollDom.scrollLeft -= scrollSpeed
 				}
@@ -98,7 +102,7 @@ function scrollHandler(e: WheelEvent) {
 }
 
 // 滚动到激活标签
-function moveActiveTab(activeTabDom) {
+function moveActiveTab(activeTabDom: HTMLElement) {
 	const scrollDom = getScrollDom()
 	const { offsetLeft, clientWidth } = activeTabDom
 	const value = Math.min(
@@ -116,16 +120,16 @@ function moveActiveTab(activeTabDom) {
 }
 
 function addRouteTab(route: RouteLocationNormalizedLoaded) {
-	let title
+	let title: string
 	let i18n
 	let flag = true
 	if (route.matched.length > 0) {
 		const metaTitle = route.matched[route.matched.length - 1].meta.title
 		const metaI18n = route.matched[route.matched.length - 1].meta.i18n
 		if (isEmpty(metaTitle)) {
-			title = route.name
+			title = route.name!.toString()
 		} else {
-			title = metaTitle
+			title = metaTitle!
 		}
 		i18n = metaI18n ?? false
 	}
@@ -136,9 +140,9 @@ function addRouteTab(route: RouteLocationNormalizedLoaded) {
 	}
 	if (flag) {
 		layoutData.navTabs.push({
-			title: title,
+			title: title!,
 			path: route.fullPath,
-			icon: route.meta.icon,
+			icon: route.meta.icon!,
 			i18n: i18n
 		})
 	}
@@ -194,7 +198,7 @@ function closeOtherTabs(route: RouteLocationNormalizedLoaded) {
 		layoutData.navTabs.length,
 		layoutData.navTabs.find(item => {
 			return item.path === route.fullPath
-		})
+		})!
 	)
 }
 
@@ -215,7 +219,7 @@ function closeRightTabs(route: RouteLocationNormalizedLoaded) {
 }
 
 function getScrollDom(): HTMLElement {
-	return unref(navTabRef)
+	return unref(navTabRef)!
 }
 
 const routeWatch = watch(

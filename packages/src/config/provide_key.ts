@@ -18,7 +18,7 @@ export const layoutConfigKey: InjectionKey<LayoutConfig> = Symbol()
 export const layoutDataKey: InjectionKey<UnwrapNestedRefs<LayoutReactiveData>> = Symbol()
 
 /** 菜单栏响应式数据*/
-export const layoutMenusKey: InjectionKey<Ref<LayoutMenuModel>> = Symbol()
+export const layoutMenusKey: InjectionKey<Ref<LayoutMenuModel[]>> = Symbol()
 
 /** 主题响应式数据 */
 export const layoutThemeDataKey: InjectionKey<ThemeReactiveData> = Symbol()

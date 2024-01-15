@@ -69,7 +69,8 @@ export const installElementAdminLayout = {
 			lightTheme: options?.lightTheme ?? layoutLightThemes[0],
 			darkTheme: options?.darkTheme ?? layoutDarkThemes[0],
 			lightTextColor: options?.lightTextColor ?? '#495057',
-			darkTextColor: options?.darkTextColor ?? '#f8f9fa'
+			darkTextColor: options?.darkTextColor ?? '#f8f9fa',
+			openNavTag: options?.openNavTag ?? false
 		}
 
 		const layoutSize = ref(safeStorageData(StorageKey.layoutSize, layoutConfig.size!))
@@ -97,13 +98,17 @@ export const installElementAdminLayout = {
 		})
 
 		const navTabHeight = computed(() => {
-			switch (layoutSize.value) {
-				case 'small':
-					return 28
-				case 'large':
-					return 40
-				default:
-					return 32
+			if (layoutConfig.openNavTag == true) {
+				switch (layoutSize.value) {
+					case 'small':
+						return 28
+					case 'large':
+						return 40
+					default:
+						return 32
+				}
+			} else {
+				return 0
 			}
 		})
 

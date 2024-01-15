@@ -21,9 +21,7 @@ createApp(App)
 	.use(router)
 	.use(installElementAdminLayout, {
 		logo: 'img/logo.png',
-		i18n: {
-			defaultLanguage: 'zh-cn'
-		},
-		navbarComponents: [SwitchFullScreen, SwitchDark, SwitchSize, SwitchLanguage, SwitchTheme, LayoutSetting]
+		navbarComponents: [SwitchFullScreen, SwitchDark, SwitchSize, SwitchLanguage, SwitchTheme, LayoutSetting],
+		openNavTag: true
 	})
 	.mount('#app')

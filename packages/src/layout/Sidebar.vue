@@ -20,10 +20,10 @@ import MenuWrapper from './components/MenuWrapper.vue'
 import SidebarResize from './components/SidebarResize.vue'
 
 const { currentTheme } = inject(layoutThemeDataKey)!
-const layoutData = inject(layoutDataKey)
-const breakpointData = inject(layoutBreakpointDataKey)
-const navbarHeight = inject('navbarHeight')!
-const sidebarWidth = inject('sidebarWidth')!
+const layoutData = inject(layoutDataKey)!
+const breakpointData = inject(layoutBreakpointDataKey)!
+const navbarHeight = inject<number>('navbarHeight')!
+const sidebarWidth = inject<number>('sidebarWidth')!
 </script>
 
 <style lang="scss">

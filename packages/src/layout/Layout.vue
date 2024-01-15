@@ -3,13 +3,17 @@ import Navbar from './Navbar.vue'
 import Sidebar from './Sidebar.vue'
 import Section from './Section.vue'
 import NavTab from './NavTab.vue'
+import { inject } from 'vue'
+import { layoutConfigKey } from '../config'
+
+const layoutConfig = inject(layoutConfigKey)
 </script>
 
 <template>
 	<div id="admin-layout-wrapper">
 		<Navbar />
 		<Sidebar />
-		<NavTab />
+		<NavTab v-if="layoutConfig?.openNavTag" />
 		<Section />
 	</div>
 </template>

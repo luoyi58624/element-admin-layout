@@ -19,9 +19,9 @@ import NestRouterView from './components/NestRouterView.vue'
 import { layoutThemeDataKey } from '../config'
 
 const { currentTheme } = inject(layoutThemeDataKey)!
-const navbarHeight = inject('navbarHeight')!
-const sidebarWidth = inject('sidebarWidth')!
-const navTabHeight = inject('navTabHeight')!
+const navbarHeight = inject<number>('navbarHeight')!
+const sidebarWidth = inject<number>('sidebarWidth')!
+const navTabHeight = inject<number>('navTabHeight')!
 </script>
 
 <style lang="scss">
