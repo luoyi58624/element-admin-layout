@@ -1,1 +1,0 @@
-import{_ as e}from"./App.1705303314508.js";import{o,c as t,a as c}from"./vendors/vue.1705303314508.js";import"./vendors/element-plus.1705303314508.js";const r={},s=c("h1",null,"四级路由-3",-1),n=[s];function _(a,f){return o(),t("div",null,n)}const m=e(r,[["render",_]]);export{m as default};
